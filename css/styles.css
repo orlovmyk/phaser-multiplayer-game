@@ -1,0 +1,19 @@
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+
+
+	//
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+#MainScene {
+	//border: 10px solid red;
+	
+	margin: 0px;
+	padding: 0px;
+}
