@@ -1,5 +1,0 @@
-class Creature(){
-	var health;
-	
-	
-}

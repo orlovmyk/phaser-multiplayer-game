@@ -17,21 +17,24 @@ const config = {
     }}
 };
 
-const game = new Phaser.Game(config);
-var sprite;
-var hitbox;
+const Game = new Phaser.Game(config);
 
-var showDebug;
-var debugGraphics;
-var map;
-var group;
-var container;
+//заменить - на _
+let mainLayers = ["ground-bot", "ground-top", "trunk", "items", "tree-top"]
+
+let sprite;
+let hitbox;
+
+let showDebug;
+let map;
+let group;
+let container;
 
 function preload() {
   // Runs once, loads up assets like images and audio
+  loadMap(this);
 
-  this.load.image("outside", "map/tiles/outside.png");
-  this.load.tilemapTiledJSON("map", "map/levels/level1.json");
+  
   this.load.spritesheet(
       "player",
       "sprites/player.png",
@@ -44,19 +47,10 @@ function preload() {
 
 }
 
-function create() {
+function create() {0
+  mainLayers = createLayers(this, mainLayers);
+  mainLayers["ground-bot"].setCollisionByProperty({ collides: true });
 
-  map = this.make.tilemap({ key: "map" });
-
-  const tileset = map.addTilesetImage("outside", "outside");
-
-  const ground = map.createStaticLayer("ground-bot", tileset, 0, 0);
-  map.createStaticLayer("ground-top", tileset, 0, 0);
-  map.createStaticLayer("trunk", tileset, 0, 0);
-  map.createStaticLayer("items", tileset, 0, 0);
-  map.createStaticLayer("tree-top", tileset, 0, 0);
-
-  ground.setCollisionByProperty({ collides: true });
 
 
   group = this.add.group();
@@ -72,7 +66,7 @@ function create() {
 
   cursors = this.input.keyboard.createCursorKeys();
 
-  this.physics.add.collider(sprite, ground);
+  this.physics.add.collider(sprite, mainLayers["ground-bot"]);
 
   const Body = Phaser.Physics.Arcade.Body;
   
@@ -84,7 +78,7 @@ function create() {
 
 
   // Help text that has a "fixed" position on the screen
-  var text = this.add
+  let text = this.add
     .text(16, 16, "Ходить стрелочками", {
       font: "18px monospace",
       fill: "#ffffff",
@@ -97,7 +91,7 @@ function create() {
   
   //player
 
-  var config = {
+  let config = {
         key: 'walk',
         frames: this.anims.generateFrameNumbers('player'),
         frameRate: 10,
@@ -112,13 +106,10 @@ function create() {
   
   group.add(sprite);
 
+  //debug on
+  this.debugGraphics = this.add.graphics().setAlpha(0.75);
+  debugLayer(this, mainLayers["ground-bot"]);
 
-  const debugGraphics = this.add.graphics().setAlpha(0.75);
-      ground.renderDebug(debugGraphics, {
-      tileColor: null, // Color of non-colliding tiles
-      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-      faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-  });
 }
 
 function update(time, delta) {
@@ -154,4 +145,12 @@ function update(time, delta) {
 
 function groupUpdate(child) {
 
+}
+
+function debugLayer(game, layer) {
+  layer.renderDebug(game.debugGraphics, {
+      tileColor: null, // Color of non-colliding tiles
+      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+      faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+  });
 }
