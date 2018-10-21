@@ -1,21 +1,13 @@
 
 class Map {
-	layers = {};
-
 	constructor(obj) {
-		this.game = obj
-	};
+		this.game = obj;
+	}
 
-	static loadMap(level) {
+	loadMap__(level) {
 		game.load.image("outside", "map/tiles/outside.png");
   		game.load.tilemapTiledJSON("map", "map/levels/"+level+".json");
-	};
-
-
-
-
-
-
+	}
 }
 
 

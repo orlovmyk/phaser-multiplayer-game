@@ -19,8 +19,8 @@ const config = {
 
 const Game = new Phaser.Game(config);
 
-//заменить - на _
-let mainLayers = ["ground-bot", "ground-top", "trunk", "items", "tree-top"]
+//Используем только _ а не -
+let mainLayers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"]
 
 let sprite;
 let hitbox;
@@ -34,7 +34,7 @@ function preload() {
   // Runs once, loads up assets like images and audio
   loadMap(this);
 
-  
+  -
   this.load.spritesheet(
       "player",
       "sprites/player.png",
@@ -49,11 +49,11 @@ function preload() {
 
 function create() {0
   mainLayers = createLayers(this, mainLayers);
-  mainLayers["ground-bot"].setCollisionByProperty({ collides: true });
+  mainLayers["ground_bot"].setCollisionByProperty({ collides: true });
 
 
 
-  group = this.add.group();
+  //group = this.add.group();
   container = this.add.container();
 
   sprite = this.physics.add.sprite(300, 300, 'player');
@@ -66,7 +66,7 @@ function create() {0
 
   cursors = this.input.keyboard.createCursorKeys();
 
-  this.physics.add.collider(sprite, mainLayers["ground-bot"]);
+  this.physics.add.collider(sprite, mainLayers["ground_bot"]);
 
   const Body = Phaser.Physics.Arcade.Body;
   
@@ -108,7 +108,7 @@ function create() {0
 
   //debug on
   this.debugGraphics = this.add.graphics().setAlpha(0.75);
-  debugLayer(this, mainLayers["ground-bot"]);
+  debugLayer(this, mainLayers["ground_bot"]);
 
 }
 
