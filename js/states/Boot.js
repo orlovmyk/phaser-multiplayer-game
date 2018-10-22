@@ -105,6 +105,7 @@ function create() {
   //colission on debug on
   map.setCollision(sprite, "ground_bot");
   map.debugCollision("ground_bot");
+  //map.spawnObjects();
 }
 
 function update(time, delta) {

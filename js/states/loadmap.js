@@ -44,4 +44,16 @@ class Map {
 		    faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
   		});
 	}
+
+	spawnObjects(){
+		console.log(this.tilemap.objects);
+
+		//Tiled names of objects
+		let g = this.tilemap.createFromObjects("spawns", "SpawnPoint", {key:"player"});
+		for (let i=0;i<g.length;i++){
+			g[i].anims.load('walk').play('walk');
+		}
+
+		console.log(g);
+	}
 }
