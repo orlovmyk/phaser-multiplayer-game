@@ -28,39 +28,29 @@ let map;
 let layers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"];
 let layersColliding = ["ground_bot"];
 
-let sprite;
-let hitbox;
-
 let container;
+
 
 function preload() {
   // Runs once, loads up assets like images and audio
   map = new Map(this);
   map.loadMap("level1", "level1");
 
-  this.load.spritesheet(
-      "player",
-      "sprites/player.png",
-      {
-        frameWidth: 40,
-        frameHeight: 40
-      }
-  );
-  this.load.image("empty_image", "sprites/empty_image.png");
-
+  player = new Player(this);
 }
 
 function create() {
-  //mainLayers["ground_bot"].setCollisionByProperty({ collides: true });
   map.createLayers(layers, "level1", layersColliding);
   
-
+  player.spawn(300, 300);
+  player.createCursors();
+   
 
   //group = this.add.group();
   container = this.add.container();
 
-  let test = this.physics.add.sprite(200, 300, 'player');
 
+  let test = this.physics.add.sprite(200, 300, 'player');
   test.setInteractive();
   this.input.setDraggable(test);
   this.input.on('drag', function (pointer, test, dragX, dragY) {
@@ -70,23 +60,10 @@ function create() {
 
     });
 
-  sprite = this.physics.add.sprite(300, 300, 'player');
-  sprite.body.setSize(20, 10).setOffset(10, 30);
-
-  hitbox = this.physics.add.sprite(300, 300, 'empty_image');
-  hitbox.body.setSize(18, 35);
-
-
-
-  cursors = this.input.keyboard.createCursorKeys();
-
-  const Body = Phaser.Physics.Arcade.Body;
-  
 
   const camera = this.cameras.main;
   camera.setBackgroundColor("#99ddff");
-
-  this.cameras.main.startFollow(sprite, false, 0.5, 0.5);
+  this.cameras.main.startFollow(player.getSprite(), false, 0.5, 0.5);
 
 
   // Help text that has a "fixed" position on the screen
@@ -98,11 +75,15 @@ function create() {
       //backgroundColor: "#000000"
     })
     .setScrollFactor(0);
+  
+
 
   //text.destroy();  ~working
   
   //player
 
+
+/*
   let config = {
         key: 'walk',
         frames: this.anims.generateFrameNumbers('player'),
@@ -115,44 +96,20 @@ function create() {
 
   sprite.anims.load('walk');
   sprite.anims.play('walk');
+*/
   
   //group.add(sprite);
 
   //colission on debug on
-  map.setCollision(sprite, "ground_bot");
+  map.setCollision(player.getSprite(), "ground_bot");
   map.debugCollision("ground_bot");
   //map.spawnObjects();
 }
 
 function update(time, delta) {
   // Runs once per frame for the duration of the scene
-    hitbox.x = sprite.x;
-    hitbox.y = sprite.y;
-
-    sprite.setVelocity(0);
-    hitbox.setVelocity(0);
-
-    if (cursors.left.isDown)
-    {
-        sprite.setVelocityX(-200);
-        hitbox.setVelocityX(-200);
-    }
-    else if (cursors.right.isDown)
-    {
-        sprite.setVelocityX(200);
-        hitbox.setVelocityX(200);
-    }
-
-    if (cursors.up.isDown)
-    {
-        sprite.setVelocityY(-200);
-        hitbox.setVelocityY(-200);
-    }
-    else if (cursors.down.isDown)
-    {
-        sprite.setVelocityY(200);
-        hitbox.setVelocityY(200);
-    }   
+  player.update();
+   
 }
 
 function groupUpdate(child) {

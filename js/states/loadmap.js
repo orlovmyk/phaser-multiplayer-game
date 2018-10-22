@@ -1,4 +1,3 @@
-
 class Map {
 	constructor(obj) {
 		this.game = obj;
