@@ -19,22 +19,20 @@ const config = {
 
 const Game = new Phaser.Game(config);
 
-//Используем только _ а не -
-let mainLayers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"]
+let map;
+let layers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"];
+let layersColliding = ["ground_bot"];
 
 let sprite;
 let hitbox;
 
-let showDebug;
-let map;
-let group;
 let container;
 
 function preload() {
   // Runs once, loads up assets like images and audio
-  loadMap(this);
+  map = new Map(this);
+  map.loadMap("level1", "level1");
 
-  -
   this.load.spritesheet(
       "player",
       "sprites/player.png",
@@ -47,10 +45,10 @@ function preload() {
 
 }
 
-function create() {0
-  mainLayers = createLayers(this, mainLayers);
-  mainLayers["ground_bot"].setCollisionByProperty({ collides: true });
-
+function create() {
+  //mainLayers["ground_bot"].setCollisionByProperty({ collides: true });
+  map.createLayers(layers, "level1", layersColliding);
+  
 
 
   //group = this.add.group();
@@ -65,8 +63,6 @@ function create() {0
 
 
   cursors = this.input.keyboard.createCursorKeys();
-
-  this.physics.add.collider(sprite, mainLayers["ground_bot"]);
 
   const Body = Phaser.Physics.Arcade.Body;
   
@@ -104,12 +100,11 @@ function create() {0
   sprite.anims.load('walk');
   sprite.anims.play('walk');
   
-  group.add(sprite);
+  //group.add(sprite);
 
-  //debug on
-  this.debugGraphics = this.add.graphics().setAlpha(0.75);
-  debugLayer(this, mainLayers["ground_bot"]);
-
+  //colission on debug on
+  map.setCollision(sprite, "ground_bot");
+  map.debugCollision("ground_bot");
 }
 
 function update(time, delta) {
@@ -145,12 +140,4 @@ function update(time, delta) {
 
 function groupUpdate(child) {
 
-}
-
-function debugLayer(game, layer) {
-  layer.renderDebug(game.debugGraphics, {
-      tileColor: null, // Color of non-colliding tiles
-      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-      faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-  });
 }
