@@ -1,7 +1,12 @@
 const config = {
   type: Phaser.WebGL, // Which renderer to use
+
+  //width: window.innerWidth
   width: 800, // Canvas width in pixels
+
+  //height: window.innerHeight
   height: 600, // Canvas height in pixels
+  
   parent: "MainScene", // ID of the DOM element to add the canvas to
   pixelArt: true,
   scene: {
@@ -53,6 +58,17 @@ function create() {
 
   //group = this.add.group();
   container = this.add.container();
+
+  let test = this.physics.add.sprite(200, 300, 'player');
+
+  test.setInteractive();
+  this.input.setDraggable(test);
+  this.input.on('drag', function (pointer, test, dragX, dragY) {
+
+        test.x = dragX;
+        test.y = dragY;
+
+    });
 
   sprite = this.physics.add.sprite(300, 300, 'player');
   sprite.body.setSize(20, 10).setOffset(10, 30);

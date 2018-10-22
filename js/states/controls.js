@@ -1,0 +1,5 @@
+class Contorls {
+	constructor(obj){
+
+	}
+}
