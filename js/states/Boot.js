@@ -44,6 +44,7 @@ function create() {
   
   player.spawn(300, 300);
   player.createCursors();
+  player.loadAnims();
    
 
   //group = this.add.group();

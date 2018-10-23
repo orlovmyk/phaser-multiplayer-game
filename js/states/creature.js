@@ -2,6 +2,7 @@ class Player {
 	constructor(obj){ 
 		this.game=obj;
 		this.velocity=200;
+		this.currentAnimation;
 
 		this.game.load.spritesheet(
 		      "player",
@@ -27,6 +28,49 @@ class Player {
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 	}
 
+	loadAnims(){
+		console.log(this.game.anims.generateFrameNumbers('player'));
+		let framesArr = this.game.anims.generateFrameNumbers('player');
+
+		this.game.anims.create({
+	        key: 'idle-right',
+	        frames: framesArr.slice(0,4),
+	        frameRate: 10,
+	        yoyo: false,
+	        repeat: -1
+		});
+
+		this.game.anims.create({
+	        key: 'idle-left',
+	        frames: framesArr.slice(4,8),
+	        frameRate: 10,
+	        yoyo: false,
+	        repeat: -1
+		});
+
+		this.game.anims.create({
+	        key: 'walk-right',
+	        frames: framesArr.slice(8,13),
+	        frameRate: 10,
+	        yoyo: false,
+	        repeat: -1
+		});
+
+		this.game.anims.create({
+	        key: 'walk-left',
+	        frames: framesArr.slice(13,19),
+	        frameRate: 10,
+	        yoyo: false,
+	        repeat: -1
+		});
+
+		
+		this.sprite.anims.load('idle-right');
+		this.sprite.anims.load('idle-left');
+		this.sprite.anims.load('walk-right');
+		this.sprite.anims.load('walk-left');
+	}
+
 	getSprite(){
 		return this.sprite;
 	}
@@ -42,11 +86,13 @@ class Player {
 		{
 			this.sprite.setVelocityX(-this.velocity);
 			this.hitbox.setVelocityX(-this.velocity);
+			//this.sprite.anims.play('walk-left');
 		}
 		else if (this.cursors.right.isDown)
 		{
 			this.sprite.setVelocityX(this.velocity);
 			this.hitbox.setVelocityX(this.velocity);
+			//this.sprite.anims.play('walk-right');
 		}
 
 		if (this.cursors.up.isDown)
