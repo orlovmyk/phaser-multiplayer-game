@@ -1,10 +1,10 @@
 const config = {
   type: Phaser.WebGL, // Which renderer to use
 
-  //width: window.innerWidth
+  //width: window.innerWidth       поменять для компиляции
   width: 800, // Canvas width in pixels
 
-  //height: window.innerHeight
+  //height: window.innerHeight	   поменять для компиляции
   height: 600, // Canvas height in pixels
   
   parent: "MainScene", // ID of the DOM element to add the canvas to
@@ -28,6 +28,8 @@ let map;
 let layers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"];
 let layersColliding = ["ground_bot"];
 
+let dpad;
+
 let container;
 
 
@@ -36,6 +38,8 @@ function preload() {
   map = new Map(this);
   map.loadMap("level1", "level1");
 
+
+  dpad = new Dpad(this);
   player = new Player(this);
 }
 
