@@ -53,7 +53,7 @@ function create() {
   player.createCursors();
   player.loadAnims();
    
-  dpad.create(100,100);
+  dpad.create(100, 100);
 
   //group = this.add.group();
   container = this.add.container();
@@ -118,7 +118,6 @@ function create() {
 function update(time, delta) {
   // Runs once per frame for the duration of the scene
   player.update();
-   
 }
 
 function groupUpdate(child) {
