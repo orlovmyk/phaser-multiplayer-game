@@ -1,11 +1,14 @@
+//width: window.innerWidth       поменять для компиляции
+const GAME_WIDTH = 800;
+
+//height: window.innerHeight	   поменять для компиляции
+const GAME_HEIGHT = 500;
+
 const config = {
   type: Phaser.WebGL, // Which renderer to use
 
-  //width: window.innerWidth       поменять для компиляции
-  width: 800, // Canvas width in pixels
-
-  //height: window.innerHeight	   поменять для компиляции
-  height: 600, // Canvas height in pixels
+  width: GAME_WIDTH, // Canvas width in pixels
+  height: GAME_HEIGHT, // Canvas height in pixels
   
   parent: "MainScene", // ID of the DOM element to add the canvas to
   pixelArt: true,
@@ -50,6 +53,7 @@ function create() {
   player.createCursors();
   player.loadAnims();
    
+  dpad.create(100,100);
 
   //group = this.add.group();
   container = this.add.container();
