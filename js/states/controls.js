@@ -1,7 +1,6 @@
 class Dpad {
 	constructor(obj){
 		this.game = obj;
-		this.isBeingDragged = false;
 
 		this.stickBot;
 		this.stickTop;
@@ -36,6 +35,8 @@ class Dpad {
 		this.stickTop.originX = this.x;
 		this.stickTop.originY = this.y;
 
+		this.stickTop.isDragable = true;
+
 		this.stickTop.debugShowBody = false;
 		this.stickBot.debugShowBody = false;
 
@@ -44,6 +45,18 @@ class Dpad {
 
 		this.stickTop.setInteractive();
 		this.game.input.setDraggable(this.stickTop);
+
+		this.stickTop.bot = this.stickBot;
+
+		this.stickTop.checkDistance = function(){
+			return Phaser.Math.Distance.Between(this.bot.body.center.x,
+												this.bot.body.center.y,
+												this.body.center.x,
+												this.body.center.y);
+
+		}
+
+		console.log(this.stickTop.bot);
 
 		//отпускание
 		this.stickTop.on('pointerdown', function () {
@@ -57,8 +70,7 @@ class Dpad {
 	    });
 
 	    this.stickTop.on('drag', function () {
-
-
+	    	console.log(this.checkDistance());
 	    });
 
 	    /*
@@ -74,9 +86,6 @@ class Dpad {
 	}
 
 	update(){
-		console.log(Phaser.Math.Distance.Between(this.stickBot.body.center.x,
-												 this.stickBot.body.center.y,
-												 this.stickTop.body.center.x,
-												 this.stickTop.body.center.y));
+
 	}
 }
