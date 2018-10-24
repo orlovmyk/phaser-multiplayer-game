@@ -42,37 +42,28 @@ function preload() {
   map.loadMap("level1", "level1");
 
 
-  dpad = new Dpad(this);
-  player = new Player(this);
+  Dpad.preload(this);  
+  Player.preload(this);
 }
 
 function create() {
   map.createLayers(layers, "level1", layersColliding);
-  
-  player.spawn(300, 300);
+
+  player = new Player(this, 400, 400);
   player.createCursors();
-  player.loadAnims();
-   
-  dpad.create(100, 100);
+
+  let j = new VirtualJoyStick(this, {x:300, y:300, radius:50})
 
   //group = this.add.group();
   container = this.add.container();
 
-
-  let test = this.physics.add.sprite(200, 300, 'player');
-  test.setInteractive();
-  this.input.setDraggable(test);
-  this.input.on('drag', function (pointer, test, dragX, dragY) {
-
-        test.x = dragX;
-        test.y = dragY;
-
-    });
-
-
   const camera = this.cameras.main;
   camera.setBackgroundColor("#99ddff");
-  this.cameras.main.startFollow(player.getSprite(), false, 0.5, 0.5);
+
+  map.setCollision(player.sprite, "ground_bot");
+  map.debugCollision("ground_bot");
+
+  this.cameras.main.startFollow(player.sprite, false, 0.5, 0.5);
 
 
   // Help text that has a "fixed" position on the screen
@@ -85,6 +76,9 @@ function create() {
     })
     .setScrollFactor(0);
   
+    dpad = new Dpad(this);
+	  dpad.create();
+	  dpad.debugOn();
 
 
   //text.destroy();  ~working
@@ -110,14 +104,13 @@ function create() {
   //group.add(sprite);
 
   //colission on debug on
-  map.setCollision(player.getSprite(), "ground_bot");
-  map.debugCollision("ground_bot");
   //map.spawnObjects();
 }
 
 function update(time, delta) {
   // Runs once per frame for the duration of the scene
   player.update();
+  dpad.update();
 }
 
 function groupUpdate(child) {

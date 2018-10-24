@@ -1,10 +1,6 @@
 class Player {
-	constructor(obj){ 
-		this.game=obj;
-		this.velocity=200;
-		this.currentAnimation;
-
-		this.game.load.spritesheet(
+	static preload(game) {
+		game.load.spritesheet(
 		      "player",
 		      "sprites/player.png",
 		      {
@@ -13,19 +9,29 @@ class Player {
 		      }
 		);
 
-		this.game.load.image("empty_image", "sprites/empty_image.png");
+		game.load.image("empty_image", "sprites/empty_image.png");
+	}
+
+	constructor(scene, x, y){
+		this.scene = scene;
+		this.cursors;
+
+		this.sprite = this.scene.physics.add.sprite(x, y, 'player');
+		this.sprite.body.setSize(20, 10).setOffset(10, 30);
+
+		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
+		this.hitbox.body.setSize(18, 35);
+
+		this.velocity = 200;
 	} 
 
-	spawn(x, y){
-		  this.sprite = this.game.physics.add.sprite(x, y, 'player');
-		  this.sprite.body.setSize(20, 10).setOffset(10, 30);
-
-		  this.hitbox = this.game.physics.add.sprite(x, y, 'empty_image');
-		  this.hitbox.body.setSize(18, 35);
+	destroy(){
+		this.sprite.destroy();
+		this.hitbox.destroy();
 	}
 
 	createCursors(){
-		this.cursors = this.game.input.keyboard.createCursorKeys();
+		this.cursors = this.scene.input.keyboard.createCursorKeys();
 	}
 
 	loadAnims(){
@@ -69,10 +75,6 @@ class Player {
 		this.sprite.anims.load('idle-left');
 		this.sprite.anims.load('walk-right');
 		this.sprite.anims.load('walk-left');
-	}
-
-	getSprite(){
-		return this.sprite;
 	}
 
 	update(){
