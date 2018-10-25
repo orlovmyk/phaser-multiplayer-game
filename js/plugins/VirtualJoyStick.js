@@ -474,7 +474,7 @@ class VirtualJoyStick {
         return this;
     }
 
-    toggleEnabl() {
+    toggleEnable() {
         this.enable = !this.enable;
     }
 

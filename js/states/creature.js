@@ -1,28 +1,24 @@
 class Player {
 	static preload(game) {
-		game.load.spritesheet(
-		      "player",
-		      "sprites/player.png",
-		      {
-		        frameWidth: 40,
-		        frameHeight: 40
-		      }
-		);
+		let b = game.load.multiatlas("knight", "sprites/knight.json", "sprites");
 
 		game.load.image("empty_image", "sprites/empty_image.png");
 	}
+
 
 	constructor(scene, x, y){
 		this.scene = scene;
 		this.cursors;
 
-		this.sprite = this.scene.physics.add.sprite(x, y, 'player');
+		this.sprite = this.scene.physics.add.sprite(x, y, "knight", "knight_idle_0.png");
 		this.sprite.body.setSize(20, 10).setOffset(10, 30);
 
 		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
 		this.hitbox.body.setSize(18, 35);
 
-		this.velocity = 400;
+		this.velocity = 140;
+
+		this.loadAnims();
 	} 
 
 	destroy(){
@@ -35,46 +31,13 @@ class Player {
 	}
 
 	loadAnims(){
-		console.log(this.game.anims.generateFrameNumbers('player'));
-		let framesArr = this.game.anims.generateFrameNumbers('player');
+		var frameNames = this.scene.anims.generateFrameNames('knight', {
+                         start: 0, end: 3,
+                         prefix: 'knight_idle_', suffix: '.png'
+                     });
 
-		this.game.anims.create({
-	        key: 'idle-right',
-	        frames: framesArr.slice(0,4),
-	        frameRate: 10,
-	        yoyo: false,
-	        repeat: -1
-		});
-
-		this.game.anims.create({
-	        key: 'idle-left',
-	        frames: framesArr.slice(4,8),
-	        frameRate: 10,
-	        yoyo: false,
-	        repeat: -1
-		});
-
-		this.game.anims.create({
-	        key: 'walk-right',
-	        frames: framesArr.slice(8,13),
-	        frameRate: 10,
-	        yoyo: false,
-	        repeat: -1
-		});
-
-		this.game.anims.create({
-	        key: 'walk-left',
-	        frames: framesArr.slice(13,19),
-	        frameRate: 10,
-	        yoyo: false,
-	        repeat: -1
-		});
-
-		
-		this.sprite.anims.load('idle-right');
-		this.sprite.anims.load('idle-left');
-		this.sprite.anims.load('walk-right');
-		this.sprite.anims.load('walk-left');
+		this.scene.anims.create({ key: 'idle', frames: frameNames, frameRate: 10, repeat: -1 });
+    	this.sprite.anims.play('idle');
 	}
 
 	update(){

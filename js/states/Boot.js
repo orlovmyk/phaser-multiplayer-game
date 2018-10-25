@@ -41,18 +41,24 @@ function preload() {
   map = new Map(this);
   map.loadMap("level1", "level1");
 
-  interface = new Interface(this);
-
+  Button.preload(this);
+  Interface.preload(this);
   Player.preload(this);
 }
 
 function create() {
   map.createLayers(layers, "level1", layersColliding);
 
-  player = new Player(this, 400, 400);
+  interface = new Interface(this);
+  player = new Player(this, 600, 600);
+  
 
-  interface.addStick();
-  player.createCursors(interface.stick);
+  interface.addJoystick();
+  interface.addHealthBar();
+  interface.addButtons();
+
+
+  player.createCursors(interface.joystick);
 
   //group = this.add.group();
   container = this.add.container();
@@ -67,6 +73,8 @@ function create() {
 
 
   // Help text that has a "fixed" position on the screen
+
+  /*
   let text = this.add
     .text(16, 16, "Ходить стрелочками", {
       font: "18px monospace",
@@ -77,7 +85,7 @@ function create() {
     .setScrollFactor(0);
 
   //text.destroy();  ~working
-  
+  */
   //player
 
 
