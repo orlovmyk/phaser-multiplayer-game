@@ -31,7 +31,7 @@ let map;
 let layers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"];
 let layersColliding = ["ground_bot"];
 
-let dpad;
+let interface;
 
 let container;
 
@@ -41,8 +41,8 @@ function preload() {
   map = new Map(this);
   map.loadMap("level1", "level1");
 
+  interface = new Interface(this);
 
-  Dpad.preload(this);  
   Player.preload(this);
 }
 
@@ -50,9 +50,9 @@ function create() {
   map.createLayers(layers, "level1", layersColliding);
 
   player = new Player(this, 400, 400);
-  player.createCursors();
 
-  let j = new VirtualJoyStick(this, {x:300, y:300, radius:50})
+  interface.addStick();
+  player.createCursors(interface.stick);
 
   //group = this.add.group();
   container = this.add.container();
@@ -75,11 +75,6 @@ function create() {
       //backgroundColor: "#000000"
     })
     .setScrollFactor(0);
-  
-    dpad = new Dpad(this);
-	  dpad.create();
-	  dpad.debugOn();
-
 
   //text.destroy();  ~working
   
@@ -110,7 +105,6 @@ function create() {
 function update(time, delta) {
   // Runs once per frame for the duration of the scene
   player.update();
-  dpad.update();
 }
 
 function groupUpdate(child) {

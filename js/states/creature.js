@@ -22,7 +22,7 @@ class Player {
 		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
 		this.hitbox.body.setSize(18, 35);
 
-		this.velocity = 200;
+		this.velocity = 400;
 	} 
 
 	destroy(){
@@ -30,8 +30,8 @@ class Player {
 		this.hitbox.destroy();
 	}
 
-	createCursors(){
-		this.cursors = this.scene.input.keyboard.createCursorKeys();
+	createCursors(obj){
+		this.cursors = obj.createCursorKeys();
 	}
 
 	loadAnims(){
