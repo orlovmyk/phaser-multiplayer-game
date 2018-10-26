@@ -66,8 +66,26 @@ function create() {
   //group = this.add.group();
   container = this.add.container();
 
-  const camera = this.cameras.main;
+  let camera = this.cameras.main;
   camera.setBackgroundColor("#99ddff");
+
+  interface.buttonA.onclick(
+      function(){
+        //camera.zoomTo(0.6, 300);
+        //camera.shake(200, 0.03);
+        //camera.fade();
+        camera.fadeFrom(1200, 0, 0, 0);
+      }
+  )
+
+  interface.buttonB.onclick(
+      function(){
+        camera.setAlpha(0.4);
+        //camera.zoomTo(1.3);
+        //camera.fade();
+        //camera.flash(150, 255, 0, 0);
+      }
+  )
 
   map.setCollision(player.sprite, "ground_bot");
   map.debugCollision("ground_bot");
