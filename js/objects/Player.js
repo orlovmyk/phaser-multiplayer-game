@@ -16,6 +16,9 @@ class Player {
 		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
 		this.hitbox.body.setSize(18, 35);
 
+		this.animation;
+		this.animationList = [];
+
 		this.velocity = 140;
 
 		this.loadAnims();
@@ -30,13 +33,20 @@ class Player {
 		this.cursors = obj.createCursorKeys();
 	}
 
-	loadAnims(){
-		var frameNames = this.scene.anims.generateFrameNames('knight', {
-                         start: 0, end: 3,
-                         prefix: 'knight_idle_', suffix: '.png'
+	loadAnimation(name, prefix, start, end, key){
+		var frameNames = this.scene.anims.generateFrameNames(name, {
+                        start: start, 
+                        end: end,
+                        prefix: prefix, 
+                        suffix: '.png'
                      });
-		this.scene.anims.create({ key: 'idle', frames: frameNames, frameRate: 10, repeat: -1 });
-    	this.sprite.anims.play('idle');
+		this.scene.anims.create({ key: key, frames: frameNames, frameRate: 10, repeat: -1 });
+	}
+
+	loadAnims(){
+		this.loadAnimation('kinght','knight_idle_', 0, 3, 'idle');
+
+		this.sprite.anims.play('idle');
 	}
 
 	update(){

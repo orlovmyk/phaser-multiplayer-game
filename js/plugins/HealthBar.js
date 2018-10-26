@@ -1,7 +1,11 @@
 class HealthBar{
 	static preload(){
 
-	}
+	};
+
+    preload(){
+
+    };
 
 	constructor(scene){
 		this.scene = scene;
@@ -18,9 +22,5 @@ class HealthBar{
         this.bar.setScrollFactor(0);
 
         scene.add.existing(this.bar);
-	}
-
-	draw() {
-    }
-
+	};
 }

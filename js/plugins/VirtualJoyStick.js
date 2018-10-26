@@ -352,6 +352,12 @@ class TouchCursor extends VectorToCursorKeys {
 }
 
 class VirtualJoyStick {
+    static preload(game){
+        game.load.image('joystick_bot', "sprites/joystick_bot.png");
+        game.load.image('joystick_top', "sprites/joystick_top.png");
+    }
+
+    
     constructor(scene, config) {
         this.scene = scene;
         this.base = undefined;

@@ -23,6 +23,7 @@ class Button{
 
 		this.button.on("pointerdown", function(){
 			this.alpha = 0.5;
+			scene.events.emit("press");
 		})
 
 		this.button.on("pointerup", function(){
