@@ -27,7 +27,11 @@ class Button{
 
 		this.button.on("pointerup", function(){
 			this.alpha = 1;
-		})		
+		})
+
+		this.button.on("pointerout", function(){
+			this.alpha = 1;
+		})
 	}
 
 	onclick(func){

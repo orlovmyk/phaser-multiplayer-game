@@ -1,6 +1,6 @@
 class Player {
 	static preload(game) {
-		let b = game.load.multiatlas("knight", "sprites/knight.json", "sprites");
+		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
 
 		game.load.image("empty_image", "sprites/empty_image.png");
 	}
@@ -35,7 +35,6 @@ class Player {
                          start: 0, end: 3,
                          prefix: 'knight_idle_', suffix: '.png'
                      });
-
 		this.scene.anims.create({ key: 'idle', frames: frameNames, frameRate: 10, repeat: -1 });
     	this.sprite.anims.play('idle');
 	}

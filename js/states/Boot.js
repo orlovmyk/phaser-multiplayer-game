@@ -22,7 +22,10 @@ const config = {
     arcade: {
       debug: true,
       gravity: { y: 0 }
-    }}
+  }},
+  input: {
+      activePointers: 2
+  }
 };
 
 const Game = new Phaser.Game(config);

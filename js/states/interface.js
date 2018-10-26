@@ -28,7 +28,8 @@ class Interface {
 			x: this.stickX,
 			y: this.stickY,
 			base: stickBot,
-			thumb: stickTop 
+			thumb: stickTop,
+			forceMin: 2 
 		}
 
 		this.joystick = new VirtualJoyStick(this.scene, config);
