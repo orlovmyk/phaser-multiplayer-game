@@ -1,26 +1,39 @@
 class HealthBar{
-	static preload(){
+    static preload(){
 
-	};
+        
+    }
 
-    preload(){
+    constructor(scene){
+        this.scene = scene;
 
-    };
+        this.width = (GAME_WIDTH/10)*4;
+        this.height = 13;
 
-	constructor(scene){
-		this.scene = scene;
+        this.valueStart = 100;
+        this.value = this.valueStart;
 
-        this.value = 100;
+        this.graphicsBot = scene.add.graphics({ fillStyle: { color: 0xff0000 } });
+        this.rectBot = new Phaser.Geom.Rectangle(7, 7, this.width, this.height);
 
-        this.width = 300;
-        this.height = 12;
+        this.graphicsTop = scene.add.graphics({ fillStyle: { color: 0x00aa00 } });
+        this.rectTop = new Phaser.Geom.Rectangle(7, 7, this.width, this.height);
 
-        this.x = this.width/2 + 8;
-        this.y = 12;
+        this.graphicsBot.fillRectShape(this.rectBot);  
+        this.graphicsTop.fillRectShape(this.rectTop);       
+    }
 
-        this.bar = new Phaser.GameObjects.Rectangle(scene, this.x, this.y, this.width, this.height, 0x00ff00, 0.7);
-        this.bar.setScrollFactor(0);
+    damage(amount){
+        if ((this.value - amount) < 0){
+            this.value = 0;   
+        }
+        else {
+            this.value -= amount;
+        }
 
-        scene.add.existing(this.bar);
-	};
+        this.graphicsTop.clear();
+        this.rectTop.width = this.value * (this.width / this.valueStart);
+        this.graphicsTop.fillRectShape(this.rectTop);
+    }
+
 }

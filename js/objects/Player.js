@@ -11,15 +11,20 @@ class Player {
 		this.cursors;
 
 		this.sprite = this.scene.physics.add.sprite(x, y, "knight", "knight_idle_0.png");
-		this.sprite.body.setSize(20, 10).setOffset(10, 30);
+		this.sprite.body.setSize(10, 30);
+		//.setOffset(10, 30);
 
 		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
-		this.hitbox.body.setSize(18, 35);
+		//this.hitbox.body.setSize(18, 35);
 
-		this.animation = 'idle';
+		this.animation;
 		this.animationList = [];
 
 		this.velocity = 140;
+
+		this.heath = 100;
+		this.healthbar;
+
 
 		this.loadAnims();
 	} 
@@ -46,10 +51,10 @@ class Player {
 
 	loadAnims(){
 		this.loadAnimation('knight','knight_idle_', 0, 3, 'idle');
-		this.loadAnimation('knight','knight_run_up_', 0, 3, 'up');
-		this.loadAnimation('knight','knight_run_down_', 0, 3, 'down');
-		this.loadAnimation('knight','knight_run_right_', 0, 3, 'right');
-		this.loadAnimation('knight','knight_run_left_', 0, 3, 'left');
+		this.loadAnimation('knight','knight_run_up_', 0, 4, 'up');
+		this.loadAnimation('knight','knight_run_down_', 0, 4, 'down');
+		this.loadAnimation('knight','knight_run_right_', 0, 5, 'right');
+		this.loadAnimation('knight','knight_run_left_', 0, 5, 'left');
 	}
 
 	update(){

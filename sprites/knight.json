@@ -4,114 +4,30 @@
 			"image": "knight.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 484,
-				"h": 157
+				"w": 120,
+				"h": 198
 			},
-			"scale": 1,
+			"scale": 0.5,
 			"frames": [
-				{
-					"filename": "knight_run_down_3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 15,
-						"w": 36,
-						"h": 68
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 36,
-						"h": 68
-					}
-				},
 				{
 					"filename": "knight_run_down_1.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 23,
-						"y": 15,
-						"w": 38,
-						"h": 68
+						"x": 11,
+						"y": 7,
+						"w": 20,
+						"h": 35
 					},
 					"frame": {
-						"x": 39,
+						"x": 1,
 						"y": 1,
-						"w": 38,
-						"h": 68
-					}
-				},
-				{
-					"filename": "knight_run_up_3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 15,
-						"w": 36,
-						"h": 68
-					},
-					"frame": {
-						"x": 79,
-						"y": 1,
-						"w": 36,
-						"h": 68
-					}
-				},
-				{
-					"filename": "knight_run_up_1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 23,
-						"y": 15,
-						"w": 38,
-						"h": 68
-					},
-					"frame": {
-						"x": 117,
-						"y": 1,
-						"w": 38,
-						"h": 68
-					}
-				},
-				{
-					"filename": "knight_run_left_2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 17,
-						"y": 15,
-						"w": 48,
-						"h": 69
-					},
-					"frame": {
-						"x": 157,
-						"y": 1,
-						"w": 48,
-						"h": 69
+						"w": 20,
+						"h": 35
 					}
 				},
 				{
@@ -119,20 +35,104 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 19,
-						"y": 15,
-						"w": 48,
-						"h": 69
+						"x": 9,
+						"y": 7,
+						"w": 25,
+						"h": 35
 					},
 					"frame": {
-						"x": 207,
+						"x": 23,
 						"y": 1,
-						"w": 48,
-						"h": 69
+						"w": 25,
+						"h": 35
+					}
+				},
+				{
+					"filename": "knight_run_up_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 7,
+						"w": 20,
+						"h": 35
+					},
+					"frame": {
+						"x": 50,
+						"y": 1,
+						"w": 20,
+						"h": 35
+					}
+				},
+				{
+					"filename": "knight_run_left_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 7,
+						"w": 25,
+						"h": 35
+					},
+					"frame": {
+						"x": 72,
+						"y": 1,
+						"w": 25,
+						"h": 35
+					}
+				},
+				{
+					"filename": "knight_run_up_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 7,
+						"w": 19,
+						"h": 35
+					},
+					"frame": {
+						"x": 99,
+						"y": 1,
+						"w": 19,
+						"h": 35
+					}
+				},
+				{
+					"filename": "knight_run_down_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 7,
+						"w": 19,
+						"h": 35
+					},
+					"frame": {
+						"x": 1,
+						"y": 38,
+						"w": 19,
+						"h": 35
 					}
 				},
 				{
@@ -140,125 +140,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 25,
-						"y": 13,
-						"w": 36,
-						"h": 70
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
 					},
 					"frame": {
-						"x": 257,
-						"y": 1,
-						"w": 36,
-						"h": 70
-					}
-				},
-				{
-					"filename": "knight_run_down_4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 13,
-						"w": 36,
-						"h": 70
-					},
-					"frame": {
-						"x": 295,
-						"y": 1,
-						"w": 36,
-						"h": 70
-					}
-				},
-				{
-					"filename": "knight_run_up_2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 13,
-						"w": 36,
-						"h": 70
-					},
-					"frame": {
-						"x": 333,
-						"y": 1,
-						"w": 36,
-						"h": 70
-					}
-				},
-				{
-					"filename": "knight_run_down_0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 13,
-						"w": 36,
-						"h": 70
-					},
-					"frame": {
-						"x": 371,
-						"y": 1,
-						"w": 36,
-						"h": 70
-					}
-				},
-				{
-					"filename": "knight_run_up_4.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 13,
-						"w": 36,
-						"h": 70
-					},
-					"frame": {
-						"x": 409,
-						"y": 1,
-						"w": 36,
-						"h": 70
-					}
-				},
-				{
-					"filename": "knight_run_down_2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 25,
-						"y": 13,
-						"w": 36,
-						"h": 70
-					},
-					"frame": {
-						"x": 447,
-						"y": 1,
-						"w": 36,
-						"h": 70
+						"x": 22,
+						"y": 38,
+						"w": 19,
+						"h": 36
 					}
 				},
 				{
@@ -266,20 +161,125 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 13,
-						"w": 52,
-						"h": 71
+						"x": 8,
+						"y": 6,
+						"w": 27,
+						"h": 36
+					},
+					"frame": {
+						"x": 43,
+						"y": 38,
+						"w": 27,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_run_up_4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
+					},
+					"frame": {
+						"x": 72,
+						"y": 38,
+						"w": 19,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_run_up_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
+					},
+					"frame": {
+						"x": 93,
+						"y": 38,
+						"w": 19,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_run_down_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
 					},
 					"frame": {
 						"x": 1,
-						"y": 73,
-						"w": 52,
-						"h": 71
+						"y": 76,
+						"w": 19,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_run_down_4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
+					},
+					"frame": {
+						"x": 22,
+						"y": 76,
+						"w": 19,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_run_down_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
+					},
+					"frame": {
+						"x": 43,
+						"y": 76,
+						"w": 19,
+						"h": 36
 					}
 				},
 				{
@@ -287,83 +287,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 15,
-						"y": 13,
-						"w": 52,
-						"h": 71
+						"x": 7,
+						"y": 6,
+						"w": 27,
+						"h": 36
 					},
 					"frame": {
-						"x": 55,
-						"y": 73,
-						"w": 52,
-						"h": 71
-					}
-				},
-				{
-					"filename": "knight_run_left_0.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 29,
-						"y": 11,
-						"w": 22,
-						"h": 73
-					},
-					"frame": {
-						"x": 109,
-						"y": 73,
-						"w": 22,
-						"h": 73
-					}
-				},
-				{
-					"filename": "knight_run_right_3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 33,
-						"y": 11,
-						"w": 22,
-						"h": 73
-					},
-					"frame": {
-						"x": 133,
-						"y": 73,
-						"w": 22,
-						"h": 73
-					}
-				},
-				{
-					"filename": "knight_run_left_3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 84,
-						"h": 84
-					},
-					"spriteSourceSize": {
-						"x": 29,
-						"y": 11,
-						"w": 22,
-						"h": 73
-					},
-					"frame": {
-						"x": 157,
-						"y": 73,
-						"w": 22,
-						"h": 73
+						"x": 64,
+						"y": 76,
+						"w": 27,
+						"h": 36
 					}
 				},
 				{
@@ -371,83 +308,83 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 33,
-						"y": 11,
-						"w": 22,
-						"h": 73
+						"x": 16,
+						"y": 5,
+						"w": 12,
+						"h": 37
 					},
 					"frame": {
-						"x": 181,
-						"y": 73,
-						"w": 22,
-						"h": 73
+						"x": 93,
+						"y": 76,
+						"w": 12,
+						"h": 37
 					}
 				},
 				{
-					"filename": "knight_run_right_1.png",
+					"filename": "knight_run_left_0.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 9,
-						"w": 48,
-						"h": 74
+						"x": 14,
+						"y": 5,
+						"w": 12,
+						"h": 37
 					},
 					"frame": {
-						"x": 205,
-						"y": 73,
-						"w": 48,
-						"h": 74
+						"x": 107,
+						"y": 76,
+						"w": 12,
+						"h": 37
 					}
 				},
 				{
-					"filename": "knight_run_left_1.png",
+					"filename": "knight_run_left_3.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 19,
-						"y": 9,
-						"w": 48,
-						"h": 74
+						"x": 14,
+						"y": 5,
+						"w": 12,
+						"h": 37
 					},
 					"frame": {
-						"x": 255,
-						"y": 73,
-						"w": 48,
-						"h": 74
+						"x": 1,
+						"y": 115,
+						"w": 12,
+						"h": 37
 					}
 				},
 				{
-					"filename": "knight_run_left_4.png",
+					"filename": "knight_run_right_3.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 21,
-						"y": 9,
-						"w": 46,
-						"h": 74
+						"x": 16,
+						"y": 5,
+						"w": 12,
+						"h": 37
 					},
 					"frame": {
-						"x": 305,
-						"y": 73,
-						"w": 46,
-						"h": 74
+						"x": 15,
+						"y": 115,
+						"w": 12,
+						"h": 37
 					}
 				},
 				{
@@ -455,41 +392,83 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 17,
-						"y": 9,
-						"w": 46,
-						"h": 74
+						"x": 8,
+						"y": 4,
+						"w": 24,
+						"h": 38
 					},
 					"frame": {
-						"x": 353,
-						"y": 73,
-						"w": 46,
-						"h": 74
+						"x": 29,
+						"y": 115,
+						"w": 24,
+						"h": 38
 					}
 				},
 				{
-					"filename": "knight_idle_0.png",
+					"filename": "knight_run_left_4.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 25,
-						"y": 1,
-						"w": 32,
-						"h": 82
+						"x": 10,
+						"y": 4,
+						"w": 24,
+						"h": 38
 					},
 					"frame": {
-						"x": 401,
-						"y": 73,
-						"w": 32,
-						"h": 82
+						"x": 55,
+						"y": 115,
+						"w": 24,
+						"h": 38
+					}
+				},
+				{
+					"filename": "knight_run_right_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 8,
+						"y": 4,
+						"w": 25,
+						"h": 38
+					},
+					"frame": {
+						"x": 81,
+						"y": 115,
+						"w": 25,
+						"h": 38
+					}
+				},
+				{
+					"filename": "knight_run_left_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 4,
+						"w": 25,
+						"h": 38
+					},
+					"frame": {
+						"x": 1,
+						"y": 155,
+						"w": 25,
+						"h": 38
 					}
 				},
 				{
@@ -497,20 +476,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 25,
-						"y": 1,
-						"w": 32,
-						"h": 82
+						"x": 12,
+						"y": 0,
+						"w": 17,
+						"h": 42
 					},
 					"frame": {
-						"x": 401,
-						"y": 73,
-						"w": 32,
-						"h": 82
+						"x": 28,
+						"y": 155,
+						"w": 17,
+						"h": 42
 					}
 				},
 				{
@@ -518,20 +497,20 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 23,
+						"x": 11,
 						"y": 0,
-						"w": 36,
-						"h": 83
+						"w": 19,
+						"h": 42
 					},
 					"frame": {
-						"x": 435,
-						"y": 73,
-						"w": 36,
-						"h": 83
+						"x": 47,
+						"y": 155,
+						"w": 19,
+						"h": 42
 					}
 				},
 				{
@@ -539,20 +518,41 @@
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
-						"w": 84,
-						"h": 84
+						"w": 42,
+						"h": 42
 					},
 					"spriteSourceSize": {
-						"x": 23,
+						"x": 11,
 						"y": 0,
-						"w": 36,
-						"h": 83
+						"w": 19,
+						"h": 42
 					},
 					"frame": {
-						"x": 435,
-						"y": 73,
-						"w": 36,
-						"h": 83
+						"x": 68,
+						"y": 155,
+						"w": 19,
+						"h": 42
+					}
+				},
+				{
+					"filename": "knight_idle_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 0,
+						"w": 17,
+						"h": 42
+					},
+					"frame": {
+						"x": 89,
+						"y": 155,
+						"w": 17,
+						"h": 42
 					}
 				}
 			]
@@ -561,6 +561,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:43f9bce88fc4cd5d46ae57322467cc0b:a978b5cb8ae34f47d6a0e7d98e479319:775abec68cea152a8c833d779d2191cb$"
+		"smartupdate": "$TexturePacker:SmartUpdate:1a4ffa1975dd4149fcde1c14d4588561:a978b5cb8ae34f47d6a0e7d98e479319:775abec68cea152a8c833d779d2191cb$"
 	}
 }

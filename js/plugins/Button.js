@@ -13,17 +13,17 @@ class Button{
 		this.scene = scene;
 
 		this.size = Button.getSize();
-
 		this.button = this.scene.add.image(x, y, 'button'+type)
 										 .setDisplaySize(this.size, this.size)
 										 .setScrollFactor(0);
+		this.button.type = type;
 
 		this.button.setInteractive();
 		this.debugShowBody = false;
 
 		this.button.on("pointerdown", function(){
 			this.alpha = 0.5;
-			scene.events.emit("press");
+			scene.events.emit("press" + this.type);
 		})
 
 		this.button.on("pointerup", function(){
@@ -34,9 +34,4 @@ class Button{
 			this.alpha = 1;
 		})
 	}
-
-	onclick(func){
-		this.button.on("pointerdown", func)
-	}
-
 }

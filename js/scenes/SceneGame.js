@@ -1,5 +1,11 @@
-let layers = ["ground_bot", "ground_top", "trunk", "items", "tree_top"];
-let layersColliding = ["ground_bot"];
+let layers = ["bot","mid","top"];
+let layersColliding = ["bot"];
+
+let UI;
+let camera;
+let map;
+let player;
+let mob;
 
 class SceneGame extends Phaser.Scene{
 	constructor(){
@@ -13,28 +19,58 @@ class SceneGame extends Phaser.Scene{
 
 	preload(){	
 		Player.preload(this);
+		Mob.preload(this);
 
-		this.map = new Map(this);
-  		this.map.loadMap("level1", "level1");
+		map = new Map(this);
+  		map.loadMap("level1", "level1");
 	};
 
 	create(){
-		this.interface = this.scene.get('Interface');
+		UI = this.scene.get('Interface');
 
-		this.map.createLayers(layers, "level1", layersColliding);
-  		this.map.debugCollision("ground_bot");
+		map.createLayers(layers, "level1", layersColliding);
+  		map.debugCollision("bot");
 
-  		this.player = new Player(this, 100, 100);
-		this.player.createCursors(this.interface.joystick);
+  		player = new Player(this, 300, 300);
+		player.createCursors(UI.joystick);
+		player.healthbar = UI.healthbar;
+
+		mob = new Mob(this, 400, 300);
 		
+		camera = this.cameras.main;
+		camera.startFollow(player.sprite, true, 0.5, 0.5);
 
-		this.cameras.main.startFollow(this.player.sprite, true, 0.5, 0.5);
 
+		UI.events.on("pressA", function(){
+			
+		});
+
+		UI.events.on("pressB", function(){
+
+		});
+
+		UI.events.on("pressC", function(){
+
+		});
+
+		//UI.healthbar.damage(10);
 	
-		this.map.setCollision(this.player.sprite, "ground_bot");
+		map.setCollision(player.sprite, "bot");
+
+		this.physics.add.collider(player.sprite, mob.sprite, function(){
+			player.healthbar.damage(1);
+
+		});
+
+		//player.sprite.setBounce(1);
+		//mob.sprite.setBounce(1);
+		//mob.sprite.setMass(10);
 	};
 
 	update(){
-		this.player.update();
+		player.update();
+
+		this.physics.moveToObject(mob.sprite, player.sprite, 50);
 	};
+
 }

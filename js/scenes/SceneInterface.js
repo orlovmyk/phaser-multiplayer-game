@@ -49,10 +49,25 @@ class SceneInterface extends Phaser.Scene{
 	};
 
 	addHealthBar(){
-		return new HealthBar(this);
+		let config = {
+		    width: 250,
+		    height: 40,
+		    x: 0,
+		    y: 0,
+		    bg: {
+		      color: '#651828'
+		    },
+		    bar: {
+		      color: '#FEFF03'
+		    },
+		    animationDuration: 200,
+		    flipped: false
+  		};
+  		
+		return new HealthBar(this, config);
 	};
 
-	addButtons(){
+	addButtons(eventScene){
 		let buttonA = new Button(this, GAME_WIDTH-(Button.getSize()/2*5+30), GAME_HEIGHT - Button.getSize() + 20, "A");
 		let buttonB = new Button(this, GAME_WIDTH-(Button.getSize()/2*3+25), GAME_HEIGHT - Button.getSize() + 10, "B");
 		let buttonC = new Button(this, GAME_WIDTH-(Button.getSize()/2+20), GAME_HEIGHT - Button.getSize(), "C");
@@ -63,7 +78,5 @@ class SceneInterface extends Phaser.Scene{
 			"C":buttonC
 		};
 	};
-
-		
 	//this.cameras.main.setAlpha(1);
 }

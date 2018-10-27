@@ -1,0 +1,125 @@
+{
+	"textures": [
+		{
+			"image": "bat.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 52,
+				"h": 144
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "bat_fly_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 10,
+						"w": 46,
+						"h": 31
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 46,
+						"h": 31
+					}
+				},
+				{
+					"filename": "bat_fly_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 13,
+						"w": 50,
+						"h": 26
+					},
+					"frame": {
+						"x": 1,
+						"y": 34,
+						"w": 50,
+						"h": 26
+					}
+				},
+				{
+					"filename": "bat_fly_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 11,
+						"w": 42,
+						"h": 25
+					},
+					"frame": {
+						"x": 1,
+						"y": 62,
+						"w": 42,
+						"h": 25
+					}
+				},
+				{
+					"filename": "bat_fly_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 14,
+						"w": 42,
+						"h": 26
+					},
+					"frame": {
+						"x": 1,
+						"y": 89,
+						"w": 42,
+						"h": 26
+					}
+				},
+				{
+					"filename": "bat_fly_4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 50,
+						"h": 50
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 16,
+						"w": 50,
+						"h": 26
+					},
+					"frame": {
+						"x": 1,
+						"y": 117,
+						"w": 50,
+						"h": 26
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:c7da63aa42d5b8491af026a73d8b3020:df8dc772e7dab8bb8001338293a238ce:7701fa4d77073f039a4bfcba279ca81e$"
+	}
+}
