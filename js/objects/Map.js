@@ -26,6 +26,7 @@ class Map {
 		//layers colliding
 		for (let i=0; i < collidelayers.length; i++){
 			new_layers[collidelayers[i]].setCollisionByProperty({ collides: true });
+			new_layers[collidelayers[i]].visible = false;
 		}
 
 		this.layers = new_layers;

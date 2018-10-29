@@ -1,5 +1,5 @@
-let layers = ["bot","mid","top"];
-let layersColliding = ["bot"];
+let layers = ["collision_layer","bot","mid","top"];
+let layersColliding = ["collision_layer"];
 
 let UI;
 let camera;
@@ -32,16 +32,18 @@ class SceneGame extends Phaser.Scene{
 		UI = this.scene.get('Interface');
 
 		map.createLayers(layers, "level1", layersColliding);
-  		map.debugCollision("bot");
+  		//map.debugCollision("collision_layer");
 
-  		player = new Player(this, 300, 300);
+  		player = new Player(this, 150, 60);
 		player.createCursors(UI.joystick);
 		player.healthbar = UI.healthbar;
 
-		mob = new Mob(this, 400, 300);
-		
+		mob = new Mob(this, 100, 60);
+		mob.sprite.setBounce(1, 1);
+
 		mobs = this.physics.add.group();
 		mobs.add(mob.sprite);
+
 
 		camera = this.cameras.main;
 		camera.startFollow(player.sprite, true, 0.4, 0.4);
@@ -61,7 +63,8 @@ class SceneGame extends Phaser.Scene{
 
 		//UI.healthbar.damage(10);
 	
-		map.setCollision(player.sprite, "bot");
+		map.setCollision(player.sprite, "collision_layer");
+		map.setCollision(mobs, "collision_layer");
 
 		this.physics.add.collider(player.sprite, mobs, function(){
 			player.healthbar.damage(1);
