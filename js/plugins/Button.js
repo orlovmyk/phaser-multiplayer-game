@@ -1,8 +1,8 @@
 class Button{
 	static preload(game){
-		game.load.image("buttonA","sprites/buttonA.png");
-		game.load.image("buttonB","sprites/buttonB.png");
-		game.load.image("buttonC","sprites/buttonC.png");
+		game.load.image("buttonA","sprites/joystick/buttonA.png");
+		game.load.image("buttonB","sprites/joystick/buttonB.png");
+		game.load.image("buttonC","sprites/joystick/buttonC.png");
 	}
 
 	static getSize(){

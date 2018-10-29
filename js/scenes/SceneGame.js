@@ -48,7 +48,7 @@ class SceneGame extends Phaser.Scene{
 
 
 		UI.events.on("pressA", function(){
-			
+			player.attack();
 		});
 
 		UI.events.on("pressB", function(){
@@ -73,8 +73,8 @@ class SceneGame extends Phaser.Scene{
 		//mob.sprite.setMass(10);
 	};
 
-	update(){
-		player.update();
+	update(time, delta){
+		player.update(time, delta);
 
 		//this.physics.moveToObject(mob.sprite, player.sprite, 50);
 	};
