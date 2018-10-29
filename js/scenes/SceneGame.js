@@ -6,6 +6,7 @@ let camera;
 let map;
 let player;
 let mob;
+let mobs;
 
 class SceneGame extends Phaser.Scene{
 	constructor(){
@@ -26,6 +27,8 @@ class SceneGame extends Phaser.Scene{
 	};
 
 	create(){
+
+		//CUSTOM GAME OBJECT https://labs.phaser.io/view.html?src=src\game%20objects\images\custom%20game%20object.js
 		UI = this.scene.get('Interface');
 
 		map.createLayers(layers, "level1", layersColliding);
@@ -37,8 +40,11 @@ class SceneGame extends Phaser.Scene{
 
 		mob = new Mob(this, 400, 300);
 		
+		mobs = this.physics.add.group();
+		mobs.add(mob.sprite);
+
 		camera = this.cameras.main;
-		camera.startFollow(player.sprite, true, 0.5, 0.5);
+		camera.startFollow(player.sprite, true, 0.4, 0.4);
 
 
 		UI.events.on("pressA", function(){
@@ -57,7 +63,7 @@ class SceneGame extends Phaser.Scene{
 	
 		map.setCollision(player.sprite, "bot");
 
-		this.physics.add.collider(player.sprite, mob.sprite, function(){
+		this.physics.add.collider(player.sprite, mobs, function(){
 			player.healthbar.damage(1);
 
 		});
@@ -70,7 +76,7 @@ class SceneGame extends Phaser.Scene{
 	update(){
 		player.update();
 
-		this.physics.moveToObject(mob.sprite, player.sprite, 50);
+		//this.physics.moveToObject(mob.sprite, player.sprite, 50);
 	};
 
 }
