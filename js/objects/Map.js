@@ -1,19 +1,19 @@
 class Map {
 	constructor(obj) {
-		this.game = obj;
+		this.scene = obj;
 		this.layers;
 		this.tilest;
 		this.tilemap;
 	}
 
 	loadMap(level, tileset) {
-		this.game.load.image(tileset, "map/tiles/"+tileset+".png");
-  		this.game.load.tilemapTiledJSON("map", "map/levels/"+level+".json");
+		this.scene.load.image(tileset, "map/tiles/"+tileset+".png");
+  		this.scene.load.tilemapTiledJSON("map", "map/levels/"+level+".json");
 	}
 
 	createLayers(layers, tileset, collidelayers) {
 		//tileset 64x64 big .png file
-		this.tilemap = this.game.make.tilemap({ key: "map" });
+		this.tilemap = this.scene.make.tilemap({ key: "map" });
 		this.tileset = this.tilemap.addTilesetImage(tileset, tileset);
 
 		//layers existing 
@@ -33,11 +33,11 @@ class Map {
 	}
 
 	setCollision(obj, layer){
-		this.game.physics.add.collider(obj, this.layers[layer]);
+		this.scene.physics.add.collider(obj, this.layers[layer]);
 	}
 
 	debugCollision(layer){
-		this.debugGraphics = this.game.add.graphics().setAlpha(0.75);
+		this.debugGraphics = this.scene.add.graphics().setAlpha(0.75);
 		this.layers[layer].renderDebug(this.debugGraphics, {
 		    tileColor: null, // Color of non-colliding tiles
 		    collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
@@ -45,15 +45,13 @@ class Map {
   		});
 	}
 
-	spawnObjects(){
-		console.log(this.tilemap.objects);
+	spawnMobs(group, layer){
+		let spawn_layer = this.tilemap.getObjectLayer(layer);
+		let new_mob;
 
-		//Tiled names of objects
-		let g = this.tilemap.createFromObjects("spawns", "SpawnPoint", {key:"player"});
-		for (let i=0;i<g.length;i++){
-			g[i].anims.load('walk').play('walk');
+		for (let i=0; i < spawn_layer.objects.length; i++){
+			new_mob = new Mob(this.scene, spawn_layer.objects[i].x, spawn_layer.objects[i].y);
+			group.add(new_mob.sprite);
 		}
-
-		console.log(g);
 	}
 }
