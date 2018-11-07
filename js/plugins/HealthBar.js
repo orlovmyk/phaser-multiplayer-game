@@ -7,6 +7,8 @@ class HealthBar{
     constructor(scene){
         this.scene = scene;
 
+        this.visible = true;
+
         this.width = (GAME_WIDTH/10)*4;
         this.height = 13;
 
@@ -36,4 +38,17 @@ class HealthBar{
         this.graphicsTop.fillRectShape(this.rectTop);
     }
 
+    toggleVisible(){
+        if(this.visible){
+            this.graphicsTop.visible = false;
+            this.graphicsBot.visible = false;
+            this.visible = false;
+        }
+
+        else {
+            this.graphicsTop.visible = true;
+            this.graphicsBot.visible = true;
+            this.visible = true;
+        }
+    }
 }

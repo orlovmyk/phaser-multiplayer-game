@@ -12,6 +12,7 @@ class Button{
 	constructor(scene, x, y, type){
 		this.scene = scene;
 
+		this.visible = true;
 		this.size = Button.getSize();
 		this.button = this.scene.add.image(x, y, 'button'+type)
 										 .setDisplaySize(this.size, this.size)
@@ -33,5 +34,18 @@ class Button{
 		this.button.on("pointerout", function(){
 			this.alpha = 1;
 		})
+	}
+
+	toggleVisible(){
+		if(this.visible){
+			this.button.visible = false;
+			this.visible = false;
+		}
+
+		else {
+			this.button.visible = true;
+			this.visible = true;
+		}
+
 	}
 }

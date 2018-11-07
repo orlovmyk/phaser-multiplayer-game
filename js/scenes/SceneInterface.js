@@ -12,14 +12,22 @@ class SceneInterface extends Phaser.Scene{
 		Button.preload(this);
 		HealthBar.preload(this);
 		VirtualJoyStick.preload(this);
+		Dialogue.preload(this);
 	};
 
 	create(){
 		this.joystick = this.addVirtualJoyStick();
 	  	this.healthbar = this.addHealthBar();
 	  	this.button = this.addButtons();
+	  	this.dialogue = this.addDialogue();
+	  	this.camera;
+	  	this.dialogue.print("Я покакал!\nПрямо гамном");
+	  	this.dialogue.toggleVisible();
 	};
 
+	addCamera(camera){
+		this.camera = camera;
+	}
 
 	addVirtualJoyStick(){
 		let stickX = GAME_WIDTH - ((GAME_WIDTH/20)*18);
@@ -78,5 +86,18 @@ class SceneInterface extends Phaser.Scene{
 			"C":buttonC
 		};
 	};
+
+	addDialogue(){
+		return new Dialogue(this);
+	}
+
+	//toggles visible for joystick and buttons
+	toggleVisible(){
+		this.joystick.toggleVisible();
+		this.button["A"].toggleVisible();
+		this.button["B"].toggleVisible();
+		this.button["C"].toggleVisible();
+		this.healthbar.toggleVisible();
+	}
 	//this.cameras.main.setAlpha(1);
 }

@@ -51,6 +51,11 @@ class SceneGame extends Phaser.Scene{
 		});
 
 		UI.events.on("pressB", function(){
+			UI.toggleVisible();
+			camera.zoomTo(2);
+			camera.once("camerazoomcomplete", () => {
+				UI.dialogue.toggleVisible();
+		    });
 
 		});
 
