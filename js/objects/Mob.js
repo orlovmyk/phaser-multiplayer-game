@@ -8,17 +8,18 @@ class Mob{
 		this.sprite = this.scene.physics.add.sprite(x, y, "bat", "bat_fly_0.png");
 		this.sprite.body.setSize(25, 25);
 
-		let frames = this.scene.anims.generateFrameNames("bat", {
+		this.sprite.anims.play("bat_fly");
+	}
+
+	static createAnims(scene){
+		let frames = scene.anims.generateFrameNames("bat", {
                         start: 0, 
                         end: 4,
                         prefix: "bat_fly_", 
                         suffix: '.png'
                      });
-		console.log(frames);
 	
-		this.scene.anims.create({ key: "bat_fly", frames: frames, frameRate: 10, repeat: -1, yoyo:true});
-
-		this.sprite.anims.play("bat_fly");
+		scene.anims.create({ key: "bat_fly", frames: frames, frameRate: 10, repeat: -1, yoyo:true});
 	}
 
 	follow(){

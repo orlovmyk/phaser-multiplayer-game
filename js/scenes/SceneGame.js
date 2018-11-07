@@ -38,11 +38,8 @@ class SceneGame extends Phaser.Scene{
 		player.createCursors(UI.joystick);
 		player.healthbar = UI.healthbar;
 
-		mob = new Mob(this, 100, 60);
-		mob.sprite.setBounce(1, 1);
-
+		Mob.createAnims(this);
 		mobs = this.physics.add.group();
-		mobs.add(mob.sprite);
 
 
 		camera = this.cameras.main;
@@ -65,6 +62,8 @@ class SceneGame extends Phaser.Scene{
 	
 		map.setCollision(player.sprite, "collision_layer");
 		map.setCollision(mobs, "collision_layer");
+
+		map.spawnMobs(mobs, "mob_spawn");
 
 		this.physics.add.collider(player.sprite, mobs, function(){
 			player.healthbar.damage(1);
