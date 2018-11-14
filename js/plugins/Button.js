@@ -31,7 +31,7 @@ class Button{
 			this.alpha = 1;
 		})
 
-		this.button.on("pointerout", function(){
+		this.button.on("pointerout", ()=>{
 			this.alpha = 1;
 		})
 	}
