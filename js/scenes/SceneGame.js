@@ -7,8 +7,9 @@ let UI;
 let camera;
 let map;
 let player;
-let mob;
 let mobs;
+
+let PHYSICS;
 
 class SceneGame extends Phaser.Scene{
 	constructor(){
@@ -29,6 +30,7 @@ class SceneGame extends Phaser.Scene{
 	};
 
 	create(){
+		PHYSICS = this.physics;
 
 		//CUSTOM GAME OBJECT https://labs.phaser.io/view.html?src=src\game%20objects\images\custom%20game%20object.js
 		UI = this.scene.get('Interface');
@@ -74,7 +76,6 @@ class SceneGame extends Phaser.Scene{
 
 		this.physics.add.collider(player.sprite, mobs, function(){
 			player.healthbar.damage(1);
-
 		});
 
 		//player.sprite.setBounce(1);
@@ -84,6 +85,10 @@ class SceneGame extends Phaser.Scene{
 
 	update(time, delta){
 		player.update(time, delta);
+
+		mobs.children.each(function(mob){
+			mob.update();
+		}, this)
 
 		//this.physics.moveToObject(mob.sprite, player.sprite, 50);
 	};

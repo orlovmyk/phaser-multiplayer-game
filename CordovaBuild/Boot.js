@@ -14,8 +14,9 @@ window.addEventListener('resize', function (event) {
 
 
 document.addEventListener('deviceready', function (event) {
-	GAME_WIDTH = window.innerWidth;
-	GAME_HEIGHT = window.innerHeight;
+	
+	GAME_WIDTH = window.screen.width * window.devicePixelRatio;
+	GAME_HEIGHT = window.screen.height * window.devicePixelRatio; //window.innerHeight;
 
     const config = {
 		type: Phaser.WebGL, // Which renderer to use
