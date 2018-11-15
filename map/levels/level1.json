@@ -56,43 +56,170 @@
         {
          "draworder":"topdown",
          "id":5,
-         "name":"mob_spawn",
+         "name":"mob",
          "objects":[
                 {
                  "height":0,
-                 "id":2,
-                 "name":"Mob",
+                 "id":22,
+                 "name":"Bat",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":129,
-                 "y":408
+                 "x":342,
+                 "y":76
                 }, 
                 {
                  "height":0,
-                 "id":3,
-                 "name":"Mob",
+                 "id":24,
+                 "name":"Bat",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":454,
-                 "y":108
+                 "x":368,
+                 "y":96
                 }, 
                 {
                  "height":0,
-                 "id":12,
-                 "name":"Mob",
+                 "id":37,
+                 "name":"Bat",
                  "point":true,
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":464,
-                 "y":240
+                 "x":208,
+                 "y":416
+                }, 
+                {
+                 "height":0,
+                 "id":38,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":96,
+                 "y":464
+                }, 
+                {
+                 "height":0,
+                 "id":39,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":160,
+                 "y":480
+                }, 
+                {
+                 "height":0,
+                 "id":40,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":112,
+                 "y":512
+                }, 
+                {
+                 "height":0,
+                 "id":41,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":512
+                }, 
+                {
+                 "height":0,
+                 "id":42,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":144,
+                 "y":432
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"polygon",
+         "objects":[
+                {
+                 "height":0,
+                 "id":26,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":112
+                        }, 
+                        {
+                         "x":80,
+                         "y":112
+                        }, 
+                        {
+                         "x":80,
+                         "y":-32
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":320,
+                 "y":48
+                }, 
+                {
+                 "height":0,
+                 "id":30,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":-32
+                        }, 
+                        {
+                         "x":224,
+                         "y":-32
+                        }, 
+                        {
+                         "x":224,
+                         "y":240
+                        }, 
+                        {
+                         "x":0,
+                         "y":240
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":32,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -111,11 +238,11 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":7,
- "nextobjectid":14,
+ "nextlayerid":8,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.0",
+ "tiledversion":"1.2.1",
  "tileheight":16,
  "tilesets":[
         {

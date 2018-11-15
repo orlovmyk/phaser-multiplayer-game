@@ -1,8 +1,5 @@
 let LVL_NAME = "level1";
 
-let layers = ["collision_layer","bot","mid","top"];
-let layersColliding = ["collision_layer"];
-
 let UI;
 let camera;
 let map;
@@ -30,8 +27,8 @@ class SceneGame extends Phaser.Scene{
 
 		// --Tilemap--
 		map = new Tilemap(this);
-		map.createLayers(layers, LVL_NAME, layersColliding);
-  		//map.debugCollision("collision_layer");
+		map.createLayers();
+  		map.debugCollision();
 
   		// --Player--
   		player = new Player(this, 150, 60);
@@ -41,19 +38,20 @@ class SceneGame extends Phaser.Scene{
 		// --Mobs--
 		mobs = this.physics.add.group();
 		Bat.createAnims(this);
+		//map.addMobByName(mobs, "Bat");
+
 		
 		// --Camera--
 		camera = this.cameras.main;
 		camera.startFollow(player.sprite, true, 0.4, 0.4);
 
-		//UI.healthbar.damage(10);
-
-		map.spawnMobs(mobs, "mob_spawn");
 		this.defineColliders();
 		this.defineButtons();
 	};
 
 	update(time, delta){
+		map.updatePolygons();
+
 		player.update(time, delta);
 		mobs.children.each((mob) =>{
 			mob.update();
@@ -82,8 +80,8 @@ class SceneGame extends Phaser.Scene{
 	}
 
 	defineColliders(){
-		map.setCollision(player.sprite, "collision_layer");
-		map.setCollision(mobs, "collision_layer");
+		map.setCollision(player.sprite);
+		map.setCollision(mobs);
 
 		this.physics.add.collider(player.sprite, mobs, () =>{
 			player.healthbar.damage(1);
