@@ -1,4 +1,4 @@
-//Test
+let LVL_NAME = "level1";
 
 let layers = ["collision_layer","bot","mid","top"];
 let layersColliding = ["collision_layer"];
@@ -8,8 +8,6 @@ let camera;
 let map;
 let player;
 let mobs;
-
-let PHYSICS;
 
 class SceneGame extends Phaser.Scene{
 	constructor(){
@@ -23,38 +21,53 @@ class SceneGame extends Phaser.Scene{
 
 	preload(){	
 		Player.preload(this);
-		Mob.preload(this);
-
-		map = new Map(this);
-  		map.loadMap("level1", "level1");
+		Bat.preload(this);
+  		Tilemap.preload(this, LVL_NAME, LVL_NAME);
 	};
 
 	create(){
-		PHYSICS = this.physics;
-
-		//CUSTOM GAME OBJECT https://labs.phaser.io/view.html?src=src\game%20objects\images\custom%20game%20object.js
 		UI = this.scene.get('Interface');
 
-		map.createLayers(layers, "level1", layersColliding);
+		// --Tilemap--
+		map = new Tilemap(this);
+		map.createLayers(layers, LVL_NAME, layersColliding);
   		//map.debugCollision("collision_layer");
 
+  		// --Player--
   		player = new Player(this, 150, 60);
 		player.createCursors(UI.joystick);
 		player.healthbar = UI.healthbar;
 
-		Mob.createAnims(this);
+		// --Mobs--
 		mobs = this.physics.add.group();
-
-
+		Bat.createAnims(this);
+		
+		// --Camera--
 		camera = this.cameras.main;
 		camera.startFollow(player.sprite, true, 0.4, 0.4);
 
+		//UI.healthbar.damage(10);
 
-		UI.events.on("pressA", function(){
+		map.spawnMobs(mobs, "mob_spawn");
+		this.defineColliders();
+		this.defineButtons();
+	};
+
+	update(time, delta){
+		player.update(time, delta);
+		mobs.children.each((mob) =>{
+			mob.update();
+		}, this)
+
+		//this.physics.moveToObject(mob.sprite, player.sprite, 50);
+	};
+
+	defineButtons(){	
+		UI.events.on("pressA",() =>{
 			player.attack();
 		});
 
-		UI.events.on("pressB", function(){
+		UI.events.on("pressB",() =>{
 			UI.toggleVisible();
 			camera.zoomTo(2);
 			camera.once("camerazoomcomplete", () => {
@@ -63,34 +76,17 @@ class SceneGame extends Phaser.Scene{
 
 		});
 
-		UI.events.on("pressC", function(){
+		UI.events.on("pressC",() =>{
 
 		});
+	}
 
-		//UI.healthbar.damage(10);
-	
+	defineColliders(){
 		map.setCollision(player.sprite, "collision_layer");
 		map.setCollision(mobs, "collision_layer");
 
-		map.spawnMobs(mobs, "mob_spawn");
-
-		this.physics.add.collider(player.sprite, mobs, function(){
+		this.physics.add.collider(player.sprite, mobs, () =>{
 			player.healthbar.damage(1);
 		});
-
-		//player.sprite.setBounce(1);
-		//mob.sprite.setBounce(1);
-		//mob.sprite.setMass(10);
-	};
-
-	update(time, delta){
-		player.update(time, delta);
-
-		mobs.children.each(function(mob){
-			mob.update();
-		}, this)
-
-		//this.physics.moveToObject(mob.sprite, player.sprite, 50);
-	};
-
+	}
 }

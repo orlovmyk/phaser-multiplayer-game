@@ -1,14 +1,14 @@
-class Map {
+class Tilemap {
+	static preload(scene, level, tileset) {
+		scene.load.image(tileset, "map/tiles/"+tileset+".png");
+  		scene.load.tilemapTiledJSON("map", "map/levels/"+level+".json");
+	}
+
 	constructor(obj) {
 		this.scene = obj;
 		this.layers;
 		this.tilest;
 		this.tilemap;
-	}
-
-	loadMap(level, tileset) {
-		this.scene.load.image(tileset, "map/tiles/"+tileset+".png");
-  		this.scene.load.tilemapTiledJSON("map", "map/levels/"+level+".json");
 	}
 
 	createLayers(layers, tileset, collidelayers) {
@@ -50,8 +50,8 @@ class Map {
 		let new_mob;
 
 		for (let i=0; i < spawn_layer.objects.length; i++){
-			new_mob = new Mob(this.scene, spawn_layer.objects[i].x, spawn_layer.objects[i].y);
-			group.add(new_mob.sprite);
+			new_mob = new Bat(this.scene, spawn_layer.objects[i].x, spawn_layer.objects[i].y);
+			group.add(new_mob);
 		}
 	}
 }

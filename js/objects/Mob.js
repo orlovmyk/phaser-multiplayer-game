@@ -1,4 +1,4 @@
-class Mob{
+class Bat extends Phaser.Physics.Arcade.Sprite{
 	static preload(game){
 		game.load.multiatlas("bat", "sprites/bat.json", "sprites");
 	}
@@ -11,36 +11,37 @@ class Mob{
                         suffix: '.png'
                      });
 	
-		scene.anims.create({ key: "bat_fly", frames: frames, frameRate: 10, repeat: -1, yoyo:true});
+		scene.anims.create({ 
+			key: "bat_fly", 
+			frames: frames, 
+			frameRate: 10, 
+			repeat: -1, 
+			yoyo:true
+		});
 	}
 
 	constructor(scene, x, y){
-		this.scene = scene;
-		this.sprite = this.scene.physics.add.sprite(x, y, "bat", "bat_fly_0.png");
-		this.sprite.body.setSize(25, 25);
+		super(scene, x, y, "bat", "bat_fly_0.png");
+		
+		scene.physics.add.existing(this);
+		scene.sys.displayList.add(this);
+		scene.sys.updateList.add(this);
 
-		this.sprite.update = function(){		
-			//PlayerFollow(this, 80);
+		this.body.setSize(25, 25);
+
+		this.update = function(){		
+			PlayerFollow(this, 80);
 		}
 
-		this.sprite.anims.play("bat_fly");
-	}
-
-	follow(){
-		this.sprite.setVelocityX();
-		this.sprite.setVelocityY();
-
+		
+		this.anims.play("bat_fly");
 	}
 }
 
 
-
-
 function PlayerFollow(sprite, speed){
 	let angle = (Phaser.Math.Angle.Between(player.sprite.x, player.sprite.y, sprite.x, sprite.y)*180)/Math.PI-180;
-	
 	let velocity = new Phaser.Math.Vector2();
-    PHYSICS.velocityFromAngle(angle, speed, velocity);
-
+    velocity.setToPolar(Phaser.Math.DegToRad(angle), speed);
     sprite.setVelocity(velocity.x, velocity.y);
 }
