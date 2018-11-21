@@ -1,3 +1,49 @@
+class Player extends Phaser.Physics.Arcade.Sprite{
+	static preload(game){
+		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
+		game.load.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
+
+		game.load.image("empty_image", "sprites/empty_image.png");
+	}
+
+	static createAnims(scene){
+
+	}
+
+	createCursors(keyboard, joystick){
+		this.keyCursors = keyboard.createCursorKeys();
+		this.joyCurosrs = joystick.createCursorKeys();
+	}
+
+	createHealthBar(healthbar){
+		this.healthbar = healthbar;
+	}
+
+	constructor(scene, x, y){
+		super(scene, x, y, "knight", "knight_idle_0.png");
+		
+		scene.physics.add.existing(this);
+		scene.sys.displayList.add(this);
+		scene.sys.updateList.add(this);
+	}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 class Player {
 	static preload(game) {
 		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
@@ -261,3 +307,5 @@ class Player {
 	}
 
 }
+
+*/

@@ -73,7 +73,7 @@ class Tilemap {
 	updatePolygons(){
 		this.polygons.forEach((polygon)=> {
 			if (polygon.isActive){
-				if (polygon.contains(player.sprite.x, player.sprite.y)){
+				if (polygon.contains(player.x, player.y)){
 					polygon.isActive = false;
 					polygon.objects.forEach((object)=> {
 						this.addMobByPoint(object);

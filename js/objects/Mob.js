@@ -28,19 +28,17 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 		scene.sys.updateList.add(this);
 
 		this.body.setSize(25, 25);
-
-		this.update = function(){		
-			PlayerFollow(this, 80);
-		}
-
-		
 		this.anims.play("bat_fly");
+	}
+
+	update(){
+		PlayerFollow(this, 80);
 	}
 }
 
 
 function PlayerFollow(sprite, speed){
-	let angle = (Phaser.Math.Angle.Between(player.sprite.x, player.sprite.y, sprite.x, sprite.y)*180)/Math.PI-180;
+	let angle = (Phaser.Math.Angle.Between(player.x, player.y, sprite.x, sprite.y)*180)/Math.PI-180;
 	let velocity = new Phaser.Math.Vector2();
     velocity.setToPolar(Phaser.Math.DegToRad(angle), speed);
     sprite.setVelocity(velocity.x, velocity.y);

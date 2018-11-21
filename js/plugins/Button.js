@@ -13,26 +13,25 @@ class Button{
 		this.scene = scene;
 
 		this.visible = true;
-		this.size = Button.getSize();
-		this.button = this.scene.add.image(x, y, 'button'+type)
-										 .setDisplaySize(this.size, this.size)
-										 .setScrollFactor(0);
+		this.button = this.scene.physics.add.image(x, y, 'button'+type)
+					 .setDisplaySize(Button.getSize(), Button.getSize())
+					 .setScrollFactor(0);
 		this.button.type = type;
-
 		this.button.setInteractive();
-		this.debugShowBody = false;
+		this.button.debugShowBody = false;
 
 		this.button.on("pointerdown", ()=>{
-			this.alpha = 0.5;
-			scene.events.emit("press" + this.type);
+			this.button.alpha = 0.5;
+			console.log(this);
+			this.scene.events.emit("press" + this.button.type);
 		})
 
 		this.button.on("pointerup", ()=>{
-			this.alpha = 1;
+			this.button.alpha = 1;
 		})
 
 		this.button.on("pointerout", ()=>{
-			this.alpha = 1;
+			this.button.alpha = 1;
 		})
 	}
 
@@ -46,6 +45,12 @@ class Button{
 			this.button.visible = true;
 			this.visible = true;
 		}
+	}
 
+	toggleDebug(){
+		if (this.button.debugShowBody)
+			this.button.debugShowBody = false;
+		else
+			this.button.debugShowBody = true;
 	}
 }

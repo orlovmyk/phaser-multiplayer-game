@@ -32,20 +32,16 @@ class SceneGame extends Phaser.Scene{
 
   		// --Player--
   		player = new Player(this, 150, 60);
-		
-  		//creating for joystick (UI.joystick);
-		player.createCursors(UI.keyboard);
-		player.healthbar = UI.healthbar;
+		player.createCursors(UI.keyboard, UI.joystick);
+		player.createHealthBar(UI.healthbar);
 
 		// --Mobs--
 		mobs = this.physics.add.group();
 		Bat.createAnims(this);
-		//map.addMobByName(mobs, "Bat");
 
-		
 		// --Camera--
 		camera = this.cameras.main;
-		camera.startFollow(player.sprite, true, 0.4, 0.4);
+		camera.startFollow(player, true, 0.4, 0.4)
 
 		this.defineColliders();
 		this.defineButtons();
@@ -59,7 +55,7 @@ class SceneGame extends Phaser.Scene{
 			mob.update();
 		}, this)
 
-		//this.physics.moveToObject(mob.sprite, player.sprite, 50);
+		//this.physics.moveToObject(mob.sprite, player, 50);
 	};
 
 	defineButtons(){	
@@ -82,13 +78,13 @@ class SceneGame extends Phaser.Scene{
 	}
 
 	defineColliders(){
-		map.setCollision(player.sprite);
+		map.setCollision(player);
 		map.setCollision(mobs);
 
 		//add collision between each other mobs
 		this.physics.add.collider(mobs, mobs);
 
-		this.physics.add.collider(player.sprite, mobs, () =>{
+		this.physics.add.collider(player, mobs, () =>{
 			player.healthbar.damage(1);
 		});
 	}
