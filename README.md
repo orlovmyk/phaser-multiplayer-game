@@ -9,8 +9,9 @@ You will need web server to run it
 * [Phaser 3](https://phaser.io/phaser3) - The web framework used
 
 ## Contributing and helping project
-Conntact me via Telegram if you want to help
-[telegram]((https://t.me/orlow)
+Conntact me if you want to help
+* [telegram](https://t.me/orlow)
+* orlownikita265@gmail.com
 
 ## License
 
