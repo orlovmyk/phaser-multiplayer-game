@@ -10,7 +10,7 @@ You will need web server to run it
 
 ## Contributing and helping project
 Conntact me via Telegram if you want to help
-[telegram](t.me/orlow)
+[telegram]((https://t.me/orlow)
 
 ## License
 
