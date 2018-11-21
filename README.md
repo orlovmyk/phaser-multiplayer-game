@@ -14,5 +14,5 @@ Conntact me if you want to help
 * orlownikita265@gmail.com
 
 ## License
-This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details\n
+This project is licensed under the GNU License - see the [LICENSE](LICENSE) file for details
 Its fully free software
