@@ -34,6 +34,7 @@ class SceneGame extends Phaser.Scene{
   		player = new Player(this, 150, 60);
 		player.createCursors(UI.keyboard, UI.joystick);
 		player.createHealthBar(UI.healthbar);
+		player.createAnims();
 
 		// --Mobs--
 		mobs = this.physics.add.group();
@@ -83,9 +84,15 @@ class SceneGame extends Phaser.Scene{
 
 		//add collision between each other mobs
 		this.physics.add.collider(mobs, mobs);
+		this.physics.add.collider(mobs, player.hitbox, damageMob);
 
 		this.physics.add.collider(player, mobs, () =>{
 			player.healthbar.damage(1);
 		});
 	}
+}
+
+
+function damageMob(ob1, ob2){
+	PlayerHitboxBounce(ob1, 18000);
 }

@@ -2,17 +2,54 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 	static preload(game){
 		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
 		game.load.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
-
 		game.load.image("empty_image", "sprites/empty_image.png");
 	}
 
-	static createAnims(scene){
+	createAnims(scene){
+		this.createMoveAnimation('knight','knight_idle_', 0, 3, 'idle');
+		this.createMoveAnimation('knight','knight_run_up_', 0, 4, 'up');
+		this.createMoveAnimation('knight','knight_run_down_', 0, 4, 'down');
+		this.createMoveAnimation('knight','knight_run_right_', 0, 5, 'right');
+		this.createMoveAnimation('knight','knight_run_left_', 0, 5, 'left');
 
+		this.createSliceAnimation('knight_slice','knight_slice_up_', 0, 2, 'slice_up');
+		this.createSliceAnimation('knight_slice','knight_slice_down_', 0, 2, 'slice_down');
+		this.createSliceAnimation('knight_slice','knight_slice_right_', 0, 2, 'slice_right');
+		this.createSliceAnimation('knight_slice','knight_slice_left_', 0, 2, 'slice_left');
+	}
+
+	createMoveAnimation(name, prefix, start, end, key){
+		let frameNames = this.scene.anims.generateFrameNames(name, {
+                        start: start, 
+                        end: end,
+                        prefix: prefix, 
+                        suffix: '.png'
+                     });
+	
+		this.scene.anims.create({ 	key: key, 
+								    frames: frameNames, 
+								    frameRate: 10, 
+								    repeat: -1 });
+	}
+
+	createSliceAnimation(name, prefix, start, end, key){
+		let frameNames = this.scene.anims.generateFrameNames(name, {
+                        start: start, 
+                        end: end,
+                        prefix: prefix, 
+                        suffix: '.png'
+                     });
+	
+		this.scene.anims.create({ 	key: key, 
+								    frames: frameNames,
+								    frameRate: 10,  
+								    duration: this.attackDuration,
+									yoyo: true });
 	}
 
 	createCursors(keyboard, joystick){
 		this.keyCursors = keyboard.createCursorKeys();
-		this.joyCurosrs = joystick.createCursorKeys();
+		this.joyCursors = joystick.createCursorKeys();
 	}
 
 	createHealthBar(healthbar){
@@ -21,17 +58,214 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
 	constructor(scene, x, y){
 		super(scene, x, y, "knight", "knight_idle_0.png");
-		
 		scene.physics.add.existing(this);
 		scene.sys.displayList.add(this);
 		scene.sys.updateList.add(this);
+		this.setSize(16, 32);
+
+		this.hitbox = this.scene.physics.add.group();
+		this.hitboxDict = {
+			[dir.up]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(1, 7).setSize(20,6),
+			[dir.down]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(1, -6).setSize(20,6),
+			[dir.right]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(-3, 0).setSize(6,28),
+			[dir.left]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(4, 0).setSize(6,28)
+		}
+
+		for(var index in this.hitboxDict) { 
+    		this.hitboxDict[index].debugBodyColor = 777777;
+    		this.hitboxDict[index].debugShowVelocity = false;
+    		this.hitbox.add(this.hitboxDict[index]);
+		}
+
+		//this.hitbox[dir.up].checkCollision = false;
+
+		this.direction;
+
+		this.velocity = 140;
 	}
 
+	attack(){
+
+	}
+
+	update(){
+		this.setVelocity(0, 0);
+		this.updateJoystick();
+		this.updateKeyboard();
+		this.updateIdle();
+
+		for(var index in this.hitboxDict) { 
+    		this.hitboxDict[index].x = player.x;
+    		this.hitboxDict[index].y = player.y;  
+		}
 
 
+		this.playMoveAnimation();
+	}
+
+	//KOSTIL' SRANYII
+	updateIdle(){
+		if ((this.keyCursors.left.isUp && this.keyCursors.right.isUp &&
+			this.keyCursors.up.isUp && this.keyCursors.down.isUp && 
+			this.direction != dir.idle) &&
+
+			(this.joyCursors.left.isUp && this.joyCursors.right.isUp &&
+			this.joyCursors.up.isUp && this.joyCursors.down.isUp && 
+			this.direction != dir.idle)) this.direction = dir.idle
+	}
+
+	updateJoystick(){
+		if (this.joyCursors.up.isDown && this.joyCursors.left.isDown){
+			this.setVelocity(-this.velocity, -this.velocity);
+			if(this.direction != dir.upleft) this.direction = dir.upleft;
+			return;
+		}
+
+		if (this.joyCursors.up.isDown && this.joyCursors.right.isDown){
+			this.setVelocity(this.velocity, -this.velocity);
+			if(this.direction != dir.upright) this.direction = dir.upright;
+			return;
+		}
+
+		if (this.joyCursors.down.isDown && this.joyCursors.left.isDown){
+			this.setVelocity(-this.velocity, this.velocity);
+			if(this.direction != dir.downleft) this.direction = dir.downleft;
+			return;
+		}
+
+		if (this.joyCursors.down.isDown && this.joyCursors.right.isDown){
+			this.setVelocity(this.velocity, this.velocity);
+			if(this.direction != dir.downright) this.direction = dir.downright;
+			return;
+		}
+
+		if (this.joyCursors.up.isDown){
+			this.setVelocityY(-this.velocity);
+			if(this.direction != dir.up) this.direction = dir.up;
+			return;
+		}
+
+		if (this.joyCursors.down.isDown){
+			this.setVelocityY(this.velocity);
+			if(this.direction != dir.down) this.direction = dir.down;
+			return;
+		}
+
+		if (this.joyCursors.left.isDown){
+			this.setVelocityX(-this.velocity);
+			if(this.direction != dir.left) this.direction = dir.left;
+			return;
+		}
+
+		if (this.joyCursors.right.isDown){
+			this.setVelocityX(this.velocity);
+			if(this.direction != dir.right) this.direction = dir.right;
+			return;
+		}
+	}
+
+	updateKeyboard(){
+		if (this.keyCursors.up.isDown && this.keyCursors.left.isDown){
+			this.setVelocity(-this.velocity, -this.velocity);
+			if(this.direction != dir.upleft) this.direction = dir.upleft;
+			return;
+		}
+
+		if (this.keyCursors.up.isDown && this.keyCursors.right.isDown){
+			this.setVelocity(this.velocity, -this.velocity);
+			if(this.direction != dir.upright) this.direction = dir.upright;
+			return;
+		}
+
+		if (this.keyCursors.down.isDown && this.keyCursors.left.isDown){
+			this.setVelocity(-this.velocity, this.velocity);
+			if(this.direction != dir.downleft) this.direction = dir.downleft;
+			return;
+		}
+
+		if (this.keyCursors.down.isDown && this.keyCursors.right.isDown){
+			this.setVelocity(this.velocity, this.velocity);
+			if(this.direction != dir.downright) this.direction = dir.downright;
+			return;
+		}
+
+		if (this.keyCursors.up.isDown){
+			this.setVelocityY(-this.velocity);
+			if(this.direction != dir.up) this.direction = dir.up;
+			return;
+		}
+
+		if (this.keyCursors.down.isDown){
+			this.setVelocityY(this.velocity);
+			if(this.direction != dir.down) this.direction = dir.down;
+			return;
+		}
+
+		if (this.keyCursors.left.isDown){
+			this.setVelocityX(-this.velocity);
+			if(this.direction != dir.left) this.direction = dir.left;
+			return;
+		}
+
+		if (this.keyCursors.right.isDown){
+			this.setVelocityX(this.velocity);
+			if(this.direction != dir.right) this.direction = dir.right;
+			return;
+		}
+	}
+
+	playMoveAnimation(){
+		switch (this.direction) {
+			case dir.up:
+				this.anims.play(dir.up, true);
+				break;
+
+			case dir.down:
+				this.anims.play(dir.down, true);
+				break;
+
+			case dir.right:
+				this.anims.play(dir.right, true);
+				break;
+
+			case dir.left:
+				this.anims.play(dir.left, true);
+				break;
+
+			case dir.upright:
+				this.anims.play(dir.right, true);
+				break;
+
+			case dir.upleft:
+				this.anims.play(dir.left, true);
+				break;
+
+			case dir.downright:
+				this.anims.play(dir.right, true);
+				break;
+
+			case dir.downleft:
+				this.anims.play(dir.left, true);
+				break;
+
+			case dir.idle:
+				this.anims.play(dir.idle, true);
+				break;
+		}
+	}
 }
 
-
+const dir = {
+    up: "up",
+    upleft: "upleft",
+    upright: "upright",
+    down: "down",
+    downleft: "downleft",
+    downright: "downright",
+    right: "right",
+    left: "left",
+    idle: "idle"
+}
 
 
 
@@ -45,11 +279,11 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
 /*
 class Player {
-	static preload(game) {
-		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
-		game.load.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
+	static precreate(game) {
+		game.create.multiatlas("knight", "sprites/knight.json", "sprites");
+		game.create.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
 
-		game.load.image("empty_image", "sprites/empty_image.png");
+		game.create.image("empty_image", "sprites/empty_image.png");
 	}
 
 
@@ -87,7 +321,7 @@ class Player {
 		this.healthbar;
 
 
-		this.loadAnims();
+		this.createAnims();
 	} 
 
 	destroy(){
@@ -99,7 +333,7 @@ class Player {
 		this.cursors = obj.createCursorKeys();
 	}
 
-	loadMoveAnimation(name, prefix, start, end, key){
+	createMoveAnimation(name, prefix, start, end, key){
 		let frameNames = this.scene.anims.generateFrameNames(name, {
                         start: start, 
                         end: end,
@@ -113,7 +347,7 @@ class Player {
 								    repeat: -1 });
 	}
 
-	loadSliceAnimation(name, prefix, start, end, key){
+	createSliceAnimation(name, prefix, start, end, key){
 		let frameNames = this.scene.anims.generateFrameNames(name, {
                         start: start, 
                         end: end,
@@ -127,17 +361,17 @@ class Player {
 									yoyo: true });
 	}
 
-	loadAnims(){
-		this.loadMoveAnimation('knight','knight_idle_', 0, 3, 'idle');
-		this.loadMoveAnimation('knight','knight_run_up_', 0, 4, 'up');
-		this.loadMoveAnimation('knight','knight_run_down_', 0, 4, 'down');
-		this.loadMoveAnimation('knight','knight_run_right_', 0, 5, 'right');
-		this.loadMoveAnimation('knight','knight_run_left_', 0, 5, 'left');
+	createAnims(){
+		this.createMoveAnimation('knight','knight_idle_', 0, 3, 'idle');
+		this.createMoveAnimation('knight','knight_run_up_', 0, 4, 'up');
+		this.createMoveAnimation('knight','knight_run_down_', 0, 4, 'down');
+		this.createMoveAnimation('knight','knight_run_right_', 0, 5, 'right');
+		this.createMoveAnimation('knight','knight_run_left_', 0, 5, 'left');
 
-		this.loadSliceAnimation('knight_slice','knight_slice_up_', 0, 2, 'slice_up');
-		this.loadSliceAnimation('knight_slice','knight_slice_down_', 0, 2, 'slice_down');
-		this.loadSliceAnimation('knight_slice','knight_slice_right_', 0, 2, 'slice_right');
-		this.loadSliceAnimation('knight_slice','knight_slice_left_', 0, 2, 'slice_left');
+		this.createSliceAnimation('knight_slice','knight_slice_up_', 0, 2, 'slice_up');
+		this.createSliceAnimation('knight_slice','knight_slice_down_', 0, 2, 'slice_down');
+		this.createSliceAnimation('knight_slice','knight_slice_right_', 0, 2, 'slice_right');
+		this.createSliceAnimation('knight_slice','knight_slice_left_', 0, 2, 'slice_left');
 	}
 
 	attack(){

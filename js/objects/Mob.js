@@ -29,10 +29,12 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 
 		this.body.setSize(25, 25);
 		this.anims.play("bat_fly");
+		this.health = 20;
 	}
 
 	update(){
-		PlayerFollow(this, 80);
+		PlayerHitboxBounce(this, 80);
+		if (this.health < 0) this.destroy();
 	}
 }
 
@@ -41,5 +43,12 @@ function PlayerFollow(sprite, speed){
 	let angle = (Phaser.Math.Angle.Between(player.x, player.y, sprite.x, sprite.y)*180)/Math.PI-180;
 	let velocity = new Phaser.Math.Vector2();
     velocity.setToPolar(Phaser.Math.DegToRad(angle), speed);
+    sprite.setVelocity(velocity.x, velocity.y);
+}
+
+function PlayerHitboxBounce(sprite, speed){
+	let angle = (Phaser.Math.Angle.Between(player.x, player.y, sprite.x, sprite.y)*180)/Math.PI-180;
+	let velocity = new Phaser.Math.Vector2();
+    velocity.setToPolar(Phaser.Math.DegToRad(angle), -speed);
     sprite.setVelocity(velocity.x, velocity.y);
 }
