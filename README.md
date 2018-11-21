@@ -1,4 +1,6 @@
 # phaser-multiplayer-game
+~you can play it!
+https://orlovw.github.io/
 Top down pixel slasher with multiplayer realization (in future)
 
 ## Installing
