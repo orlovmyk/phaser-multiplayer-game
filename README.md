@@ -3,11 +3,14 @@ Top down pixel slasher with multiplayer realization (in future)
 
 ## Installing
 You will need web server to run it
-* 200 OK(https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb) Chrome extension web server is pretty good solution
+* [200 OK](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb) Chrome extension web server is pretty good solution
 
 ## Built With
 * [Phaser 3](https://phaser.io/phaser3) - The web framework used
 
+## Contributing and helping project
+Conntact me via Telegram if you want to help
+t.me/orlow
 
 ## License
 
