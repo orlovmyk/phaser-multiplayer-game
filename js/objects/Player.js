@@ -257,8 +257,7 @@ class Player {
 					this.sprite.anims.play(this.animation);
 				};
 			return;
-		}   
-
+		}
 	}
 
 }

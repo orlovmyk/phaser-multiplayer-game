@@ -20,7 +20,11 @@ class SceneInterface extends Phaser.Scene{
 	  	this.healthbar = this.addHealthBar();
 	  	this.button = this.addButtons();
 	  	this.dialogue = this.addDialogue();
+	  	this.keyboard = this.addKeyboard();
+
 	  	this.camera;
+
+	  	//FIX PLEASE
 	  	this.dialogue.print("Я покакал!\nПрямо гамном");
 	  	this.dialogue.toggleVisible();
 	};
@@ -55,6 +59,23 @@ class SceneInterface extends Phaser.Scene{
 
 		return new VirtualJoyStick(this, config);
 	};
+
+	addKeyboard(){
+		let keyboard = this.input.keyboard;
+
+		keyboard.on('keydown_A', ()=>{
+			this.events.emit("pressA");
+		}, this);
+		keyboard.on('keydown_S', ()=>{
+			this.events.emit("pressB");
+		}, this);
+		keyboard.on('keydown_D', ()=>{
+			this.events.emit("pressC");
+		}, this);
+
+		return keyboard;
+
+	}
 
 	addHealthBar(){
 		let config = {
@@ -91,7 +112,7 @@ class SceneInterface extends Phaser.Scene{
 		return new Dialogue(this);
 	}
 
-	//toggles visible for joystick and buttons
+	//toggles visible for joystick buttons healthbar
 	toggleVisible(){
 		this.joystick.toggleVisible();
 		this.button["A"].toggleVisible();

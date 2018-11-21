@@ -22,12 +22,12 @@ class Button{
 		this.button.setInteractive();
 		this.debugShowBody = false;
 
-		this.button.on("pointerdown", function(){
+		this.button.on("pointerdown", ()=>{
 			this.alpha = 0.5;
 			scene.events.emit("press" + this.type);
 		})
 
-		this.button.on("pointerup", function(){
+		this.button.on("pointerup", ()=>{
 			this.alpha = 1;
 		})
 

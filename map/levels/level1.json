@@ -72,18 +72,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":24,
-                 "name":"Bat",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":368,
-                 "y":96
-                }, 
-                {
-                 "height":0,
                  "id":37,
                  "name":"Bat",
                  "point":true,
@@ -153,6 +141,18 @@
                  "width":0,
                  "x":144,
                  "y":432
+                }, 
+                {
+                 "height":0,
+                 "id":46,
+                 "name":"Bat",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":412,
+                 "y":97.6666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -179,12 +179,12 @@
                          "y":112
                         }, 
                         {
-                         "x":80,
-                         "y":112
+                         "x":121,
+                         "y":108.666666666667
                         }, 
                         {
-                         "x":80,
-                         "y":-32
+                         "x":131,
+                         "y":-12
                         }],
                  "rotation":0,
                  "type":"",
@@ -239,7 +239,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":43,
+ "nextobjectid":47,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.1",

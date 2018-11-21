@@ -32,7 +32,9 @@ class SceneGame extends Phaser.Scene{
 
   		// --Player--
   		player = new Player(this, 150, 60);
-		player.createCursors(UI.joystick);
+		
+  		//creating for joystick (UI.joystick);
+		player.createCursors(UI.keyboard);
 		player.healthbar = UI.healthbar;
 
 		// --Mobs--
@@ -82,6 +84,9 @@ class SceneGame extends Phaser.Scene{
 	defineColliders(){
 		map.setCollision(player.sprite);
 		map.setCollision(mobs);
+
+		//add collision between each other mobs
+		this.physics.add.collider(mobs, mobs);
 
 		this.physics.add.collider(player.sprite, mobs, () =>{
 			player.healthbar.damage(1);
