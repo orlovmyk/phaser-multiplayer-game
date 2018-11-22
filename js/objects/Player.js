@@ -61,21 +61,15 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		scene.physics.add.existing(this);
 		scene.sys.displayList.add(this);
 		scene.sys.updateList.add(this);
-		this.setSize(16, 32);
+		this.bodyWidth = 16;
+		this.bodyHeight = 32; 
 
-		this.hitbox = this.scene.physics.add.group();
-		this.hitboxDict = {
-			[dir.up]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(1, 7).setSize(20,6),
-			[dir.down]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(1, -6).setSize(20,6),
-			[dir.right]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(-3, 0).setSize(6,28),
-			[dir.left]: this.scene.physics.add.sprite(x, y, 'empty_image').setOrigin(4, 0).setSize(6,28)
-		}
+		this.setSize(this.bodyWidth, this.bodyHeight);
 
-		for(var index in this.hitboxDict) { 
-    		this.hitboxDict[index].debugBodyColor = 777777;
-    		this.hitboxDict[index].debugShowVelocity = false;
-    		this.hitbox.add(this.hitboxDict[index]);
-		}
+		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
+		this.hitbox.setSize(this.bodyWidth+10, this.bodyHeight+10);
+		this.hitbox.debugBodyColor = 777777;
+		this.hitbox.debugShowVelocity = false;
 
 		//this.hitbox[dir.up].checkCollision = false;
 
@@ -94,11 +88,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.updateKeyboard();
 		this.updateIdle();
 
-		for(var index in this.hitboxDict) { 
-    		this.hitboxDict[index].x = player.x;
-    		this.hitboxDict[index].y = player.y;  
-		}
-
+		this.hitbox.x = this.x;
+		this.hitbox.y = this.y;
 
 		this.playMoveAnimation();
 	}

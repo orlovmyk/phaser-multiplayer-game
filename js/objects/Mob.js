@@ -30,6 +30,8 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 		this.body.setSize(25, 25);
 		this.anims.play("bat_fly");
 		this.health = 20;
+
+		this.setMaxVelocity(30);
 	}
 
 	update(){

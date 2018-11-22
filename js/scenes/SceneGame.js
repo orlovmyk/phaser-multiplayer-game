@@ -74,7 +74,7 @@ class SceneGame extends Phaser.Scene{
 		});
 
 		UI.events.on("pressC",() =>{
-
+		
 		});
 	}
 
@@ -84,7 +84,7 @@ class SceneGame extends Phaser.Scene{
 
 		//add collision between each other mobs
 		this.physics.add.collider(mobs, mobs);
-		this.physics.add.collider(mobs, player.hitbox, damageMob);
+		this.physics.add.collider(mobs, player.hitbox, test);
 
 		this.physics.add.collider(player, mobs, () =>{
 			player.healthbar.damage(1);
@@ -92,7 +92,8 @@ class SceneGame extends Phaser.Scene{
 	}
 }
 
-
-function damageMob(ob1, ob2){
-	PlayerHitboxBounce(ob1, 18000);
+function test(ob1, ob2){
+	player.setTint(0x7a7a7a);
+	ob2.setTint(0xf00000);
 }
+
