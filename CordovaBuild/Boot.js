@@ -1,23 +1,18 @@
 //width: window.innerWidth       поменять для компиляции
-let GAME_WIDTH;
+let GAME_WIDTH = window.innerWidth;
 
 //height: window.innerHeight	   поменять для компиляции
-let GAME_HEIGHT;
+let GAME_HEIGHT = window.innerHeight;
 
 let Game;
 
-/*
 window.addEventListener('resize', function (event) {
-    Game.resize(window.innerWidth, window.innerHeight);
+    Game.resize(GAME_WIDTH, GAME_HEIGHT);
 }, false);
-*/
 
 
 document.addEventListener('deviceready', function (event) {
 	
-	GAME_WIDTH = window.screen.width * window.devicePixelRatio;
-	GAME_HEIGHT = window.screen.height * window.devicePixelRatio; //window.innerHeight;
-
     const config = {
 		type: Phaser.WebGL, // Which renderer to use
 
