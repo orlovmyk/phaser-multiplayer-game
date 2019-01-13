@@ -6,6 +6,8 @@ let map;
 let player;
 let mobs;
 
+let DEBUG_FLAG = true;
+
 class SceneGame extends Phaser.Scene{
 	constructor(){
 		super(
@@ -53,9 +55,15 @@ class SceneGame extends Phaser.Scene{
 
 		player.update(time, delta);
 		mobs.children.each((mob) =>{
-			mob.update();
+			mob.update(time);
 		}, this)
 
+		DrawTarget();
+
+		if(DEBUG_FLAG && (mobs.countActive() != 0)) {
+			ClosestMobToPlayer();
+			DEBUG_FLAG = false;
+	    }
 		//this.physics.moveToObject(mob.sprite, player, 50);
 	};
 
@@ -84,16 +92,42 @@ class SceneGame extends Phaser.Scene{
 
 		//add collision between each other mobs
 		this.physics.add.collider(mobs, mobs);
-		this.physics.add.collider(mobs, player.hitbox, test);
+		this.physics.add.collider(player.hitbox, mobs, (ob, mob) =>{
+ 			if (player.isAttack) {
+ 				MobBounce(ob, mob);
+ 				mob.damage(player.attack_damage);
+ 				player.canMove = true;
+ 			}
+		});
 
-		this.physics.add.collider(player, mobs, () =>{
-			player.healthbar.damage(1);
+		this.physics.add.collider(player, mobs, (ob, mob) =>{
+			//ob1.setTint(0xf00000);
+			//player.healthbar.damage(1);
+			if (!player.isAttack){
+				PlayerBounce(ob, mob);
+				player.damage(mob.attack_damage);
+			};
 		});
 	}
 }
 
-function test(ob1, ob2){
-	player.setTint(0x7a7a7a);
-	ob2.setTint(0xf00000);
+function PlayerBounce(ob, mob){
+	let angle = (Phaser.Math.Angle.Between(player.x, player.y, mob.x, mob.y)*180)/Math.PI-180;
+	let velocity = new Phaser.Math.Vector2();
+    velocity.setToPolar(Phaser.Math.DegToRad(angle), player.bouncePower);
+
+    player.canMoveStartTimerBounce = true;
+    player.setVelocity(velocity.x, velocity.y);
+    player.setTint(0xf00000);
+}
+
+function MobBounce(ob, mob){
+	let angle = (Phaser.Math.Angle.Between(player.x, player.y, mob.x, mob.y)*180)/Math.PI-180;
+	let velocity = new Phaser.Math.Vector2();
+    velocity.setToPolar(Phaser.Math.DegToRad(angle), -mob.bouncePower);
+
+    mob.bounceStart = true;
+    mob.setVelocity(velocity.x, velocity.y);
+    mob.setTint(0xf00000);
 }
 

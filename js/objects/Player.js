@@ -3,6 +3,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
 		game.load.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
 		game.load.image("empty_image", "sprites/empty_image.png");
+		game.load.image("circle", "sprites/circle.png");
 	}
 
 	createAnims(scene){
@@ -56,22 +57,57 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.healthbar = healthbar;
 	}
 
+	damage(amount){
+		this.healthbar.damage(amount);
+		this.health -= amount;
+	}
+
 	constructor(scene, x, y){
 		super(scene, x, y, "knight", "knight_idle_0.png");
 		scene.physics.add.existing(this);
 		scene.sys.displayList.add(this);
 		scene.sys.updateList.add(this);
+
 		this.bodyWidth = 16;
 		this.bodyHeight = 32; 
 
 		this.setSize(this.bodyWidth, this.bodyHeight);
 
 		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
-		this.hitbox.setSize(this.bodyWidth+10, this.bodyHeight+10);
+		this.hitbox.setSize(this.bodyWidth+15, this.bodyHeight+15);
 		this.hitbox.debugBodyColor = 777777;
 		this.hitbox.debugShowVelocity = false;
 
-		//this.hitbox[dir.up].checkCollision = false;
+		this.circle = this.scene.physics.add.sprite(x, y, 'circle');
+		this.circle.setSize(50, 50);
+		this.circle.setDisplaySize(50, 50);
+
+		this.canMove = true;
+		this.canMoveTimer = 0;
+		this.canMoveStartTimer = false;
+		this.canMoveStartTimerBounce = false;
+		
+		this.canAttack = true;
+		this.canAttackTimer = 0;
+		this.canAttackStartTimer = false;
+
+		//change to reload attack faster
+		this.attackReload = 800;
+		//change to attack faster
+		this.attackDuration = 500;
+		
+		//bounce
+		this.bounceDuration = 300;
+		this.bouncePower = 200;
+
+		//to check collide on hitbox
+		this.isAttack = false;
+
+		//player damage
+		this.attack_damage = 15;
+
+		//player health
+		this.health = 100;
 
 		this.direction;
 
@@ -79,14 +115,70 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 	}
 
 	attack(){
+		let mob = ClosestMobToPlayer();
+		if (mob == null || !this.canAttack || !this.canMove) return;
+
+		this.canMoveStartTimer = true;		
+		this.canAttackStartTimer = true;
+		this.canMove = false;
+
+		this.isAttack = true;
+
+		let angle = (Phaser.Math.Angle.Between(this.x, this.y, mob.x, mob.y)*180)/Math.PI-180;
+		let velocity = new Phaser.Math.Vector2();
+	    velocity.setToPolar(Phaser.Math.DegToRad(angle), -300);
+
+	    this.setVelocity(velocity.x, velocity.y);
+	}
+
+	attackUpdate(time){
+		if (this.canAttackStartTimer){
+			this.canAttack = false;
+			this.canAttackStartTimer = false;
+			this.canAttackTimer = time + this.attackReload;
+		}
+
+		if (time > this.canAttackTimer){
+			this.canAttack = true;
+			this.isAttack = false;
+		}
+
+		if (this.canMoveStartTimer){
+			this.canMove = false;
+			this.canMoveStartTimer = false;
+			this.canMoveTimer = time + this.attackDuration;
+		}
+
+		if (this.canMoveStartTimerBounce){
+			this.canMove = false;
+			this.canMoveStartTimerBounce = false;
+			this.canMoveTimer = time + this.bounceDuration;
+		}
+
+		if (time > this.canMoveTimer){
+			this.canMove = true;
+			this.isAttack = false;
+			this.clearTint();
+		}
+
+
 
 	}
 
-	update(){
-		this.setVelocity(0, 0);
-		this.updateJoystick();
-		this.updateKeyboard();
-		this.updateIdle();
+	update(time, delta){
+		if(this.canMove){
+			this.setVelocity(0, 0);
+
+			this.updateJoystick();
+			this.updateKeyboard();
+			this.updateIdle();
+		}
+
+		if(this.health < 0){
+			console.log('im dead');
+		}
+
+		this.attackUpdate(time);
 
 		this.hitbox.x = this.x;
 		this.hitbox.y = this.y;
