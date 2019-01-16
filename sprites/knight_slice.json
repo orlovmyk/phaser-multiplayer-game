@@ -1,0 +1,272 @@
+{
+	"textures": [
+		{
+			"image": "knight_slice.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 126,
+				"h": 115
+			},
+			"scale": 0.5,
+			"frames": [
+				{
+					"filename": "knight_slice_left_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 23,
+						"y": 5,
+						"w": 12,
+						"h": 37
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 12,
+						"h": 37
+					}
+				},
+				{
+					"filename": "knight_slice_right_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 5,
+						"w": 12,
+						"h": 37
+					},
+					"frame": {
+						"x": 15,
+						"y": 1,
+						"w": 12,
+						"h": 37
+					}
+				},
+				{
+					"filename": "knight_slice_up_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 6,
+						"w": 19,
+						"h": 36
+					},
+					"frame": {
+						"x": 29,
+						"y": 1,
+						"w": 19,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_slice_up_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 8,
+						"w": 19,
+						"h": 31
+					},
+					"frame": {
+						"x": 50,
+						"y": 1,
+						"w": 19,
+						"h": 31
+					}
+				},
+				{
+					"filename": "knight_slice_down_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 1,
+						"w": 19,
+						"h": 36
+					},
+					"frame": {
+						"x": 71,
+						"y": 1,
+						"w": 19,
+						"h": 36
+					}
+				},
+				{
+					"filename": "knight_slice_down_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 13,
+						"y": 2,
+						"w": 19,
+						"h": 34
+					},
+					"frame": {
+						"x": 92,
+						"y": 1,
+						"w": 19,
+						"h": 34
+					}
+				},
+				{
+					"filename": "knight_slice_right_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 8,
+						"w": 27,
+						"h": 34
+					},
+					"frame": {
+						"x": 1,
+						"y": 40,
+						"w": 27,
+						"h": 34
+					}
+				},
+				{
+					"filename": "knight_slice_left_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 8,
+						"w": 27,
+						"h": 34
+					},
+					"frame": {
+						"x": 30,
+						"y": 40,
+						"w": 27,
+						"h": 34
+					}
+				},
+				{
+					"filename": "knight_slice_down_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 3,
+						"w": 38,
+						"h": 32
+					},
+					"frame": {
+						"x": 59,
+						"y": 40,
+						"w": 38,
+						"h": 32
+					}
+				},
+				{
+					"filename": "knight_slice_up_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 38,
+						"h": 38
+					},
+					"frame": {
+						"x": 1,
+						"y": 76,
+						"w": 38,
+						"h": 38
+					}
+				},
+				{
+					"filename": "knight_slice_right_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 8,
+						"w": 41,
+						"h": 34
+					},
+					"frame": {
+						"x": 41,
+						"y": 76,
+						"w": 41,
+						"h": 34
+					}
+				},
+				{
+					"filename": "knight_slice_left_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 42,
+						"h": 42
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 8,
+						"w": 41,
+						"h": 34
+					},
+					"frame": {
+						"x": 84,
+						"y": 76,
+						"w": 41,
+						"h": 34
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:2bf22210ba93821601a6d70adb7b232d:4bc2de718f3e2a24f6c4528cdd7df478:d9743dd7f25c1e0a016dde834626155e$"
+	}
+}
