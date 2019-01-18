@@ -6,11 +6,8 @@ let map;
 let player;
 let mobs;
 
-<<<<<<< Updated upstream
 let DEBUG_FLAG = true;
 
-=======
->>>>>>> Stashed changes
 class SceneGame extends Phaser.Scene{
 	constructor(){
 		super(
@@ -58,7 +55,6 @@ class SceneGame extends Phaser.Scene{
 
 		player.update(time, delta);
 		mobs.children.each((mob) =>{
-<<<<<<< Updated upstream
 			mob.update(time);
 		}, this)
 
@@ -68,11 +64,6 @@ class SceneGame extends Phaser.Scene{
 			ClosestMobToPlayer();
 			DEBUG_FLAG = false;
 	    }
-=======
-			mob.update();
-		}, this)
-
->>>>>>> Stashed changes
 		//this.physics.moveToObject(mob.sprite, player, 50);
 	};
 
@@ -101,7 +92,6 @@ class SceneGame extends Phaser.Scene{
 
 		//add collision between each other mobs
 		this.physics.add.collider(mobs, mobs);
-<<<<<<< Updated upstream
 		this.physics.add.collider(player.hitbox, mobs, (ob, mob) =>{
  			if (player.isAttack) {
  				MobBounce(ob, mob);
@@ -117,17 +107,10 @@ class SceneGame extends Phaser.Scene{
 				PlayerBounce(ob, mob);
 				player.damage(mob.attack_damage);
 			};
-=======
-		this.physics.add.collider(mobs, player.hitbox, test);
-
-		this.physics.add.collider(player, mobs, () =>{
-			player.healthbar.damage(1);
->>>>>>> Stashed changes
 		});
 	}
 }
 
-<<<<<<< Updated upstream
 function PlayerBounce(ob, mob){
 	let angle = (Phaser.Math.Angle.Between(player.x, player.y, mob.x, mob.y)*180)/Math.PI-180;
 	let velocity = new Phaser.Math.Vector2();
@@ -146,10 +129,5 @@ function MobBounce(ob, mob){
     mob.bounceStart = true;
     mob.setVelocity(velocity.x, velocity.y);
     mob.setTint(0xf00000);
-=======
-function test(ob1, ob2){
-	player.setTint(0x7a7a7a);
-	ob2.setTint(0xf00000);
->>>>>>> Stashed changes
 }
 

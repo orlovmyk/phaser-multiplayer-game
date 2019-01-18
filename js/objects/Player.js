@@ -3,10 +3,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		game.load.multiatlas("knight", "sprites/knight.json", "sprites");
 		game.load.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
 		game.load.image("empty_image", "sprites/empty_image.png");
-<<<<<<< Updated upstream
 		game.load.image("circle", "sprites/circle.png");
-=======
->>>>>>> Stashed changes
 	}
 
 	createAnims(scene){
@@ -60,31 +57,24 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.healthbar = healthbar;
 	}
 
-<<<<<<< Updated upstream
 	damage(amount){
 		this.healthbar.damage(amount);
 		this.health -= amount;
 	}
 
-=======
->>>>>>> Stashed changes
 	constructor(scene, x, y){
 		super(scene, x, y, "knight", "knight_idle_0.png");
 		scene.physics.add.existing(this);
 		scene.sys.displayList.add(this);
 		scene.sys.updateList.add(this);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
-		this.bodyWidth = 16;
-		this.bodyHeight = 32; 
+		this.bodyWidth = 6;
+		this.bodyHeight = 18; 
 
 		this.setSize(this.bodyWidth, this.bodyHeight);
 
 		this.hitbox = this.scene.physics.add.sprite(x, y, 'empty_image');
-<<<<<<< Updated upstream
-		this.hitbox.setSize(this.bodyWidth+15, this.bodyHeight+15);
+		this.hitbox.setSize(this.bodyWidth+8, this.bodyHeight+8);
 		this.hitbox.debugBodyColor = 777777;
 		this.hitbox.debugShowVelocity = false;
 
@@ -118,13 +108,6 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
 		//player health
 		this.health = 100;
-=======
-		this.hitbox.setSize(this.bodyWidth+10, this.bodyHeight+10);
-		this.hitbox.debugBodyColor = 777777;
-		this.hitbox.debugShowVelocity = false;
-
-		//this.hitbox[dir.up].checkCollision = false;
->>>>>>> Stashed changes
 
 		this.direction;
 
@@ -132,7 +115,6 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 	}
 
 	attack(){
-<<<<<<< Updated upstream
 		let mob = ClosestMobToPlayer();
 		if (mob == null || !this.canAttack || !this.canMove) return;
 
@@ -197,16 +179,6 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		}
 
 		this.attackUpdate(time);
-=======
-
-	}
-
-	update(){
-		this.setVelocity(0, 0);
-		this.updateJoystick();
-		this.updateKeyboard();
-		this.updateIdle();
->>>>>>> Stashed changes
 
 		this.hitbox.x = this.x;
 		this.hitbox.y = this.y;

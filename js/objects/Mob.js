@@ -20,13 +20,10 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 		});
 	}
 
-<<<<<<< Updated upstream
 	damage(amount){
 		this.health -= amount;
 	}
 
-=======
->>>>>>> Stashed changes
 	constructor(scene, x, y){
 		super(scene, x, y, "bat", "bat_fly_0.png");
 		
@@ -38,7 +35,6 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 		this.anims.play("bat_fly");
 		this.health = 20;
 
-<<<<<<< Updated upstream
 		this.isBounced = false;
 		this.bounceStart = false;
 		this.bouncePower = 500;
@@ -66,13 +62,6 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 			PlayerFollow(this, 80);			
 		}
 
-=======
-		this.setMaxVelocity(30);
-	}
-
-	update(){
-		PlayerHitboxBounce(this, 80);
->>>>>>> Stashed changes
 		if (this.health < 0) this.destroy();
 	}
 }
@@ -85,7 +74,6 @@ function PlayerFollow(sprite, speed){
     sprite.setVelocity(velocity.x, velocity.y);
 }
 
-<<<<<<< Updated upstream
 function ClosestMobToPlayer(){
 	let closest_mob = null;
 	let distance = 999;
@@ -113,11 +101,3 @@ function DrawTarget(){
 		player.circle.y = mob.y;
 	}
  }
-=======
-function PlayerHitboxBounce(sprite, speed){
-	let angle = (Phaser.Math.Angle.Between(player.x, player.y, sprite.x, sprite.y)*180)/Math.PI-180;
-	let velocity = new Phaser.Math.Vector2();
-    velocity.setToPolar(Phaser.Math.DegToRad(angle), -speed);
-    sprite.setVelocity(velocity.x, velocity.y);
-}
->>>>>>> Stashed changes
