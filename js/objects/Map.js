@@ -13,13 +13,15 @@ class Tilemap {
 		this.layerCollide = "collision_layer";
 		this.layerMob = "mob";
 		this.layerPolygon = "polygon";
+		this.layerDialogePolygon = "dialogues";
 		this.layerNPC = "npc";
 
 		this.tileset = LVL_NAME;
 		this.tilemap;
 		
 		this.objects;
-		this.polygons;
+		this.polygons = [];
+		this.dialogue_polygons = [];
 
 		this.MobSpawn;
 	}
@@ -46,7 +48,7 @@ class Tilemap {
 		this.objects = spawn_layer.objects;
 
 		//Converting Tiled polygons to Phaser polygons and add them to array
-		this.polygons = [];
+		//this.polygons = [];
 		let polygon_layer = this.tilemap.getObjectLayer(this.layerPolygon);
 		for (let i=0; i<polygon_layer.objects.length; i++){
 			let temp = polygon_layer.objects[i];
@@ -60,8 +62,22 @@ class Tilemap {
 			new_polygon.isActive = true;
 			this.polygons.push(new_polygon);
 		}
-
 		this.addObjectsToPolygons();
+
+		//this.dialogue_polygons = [];
+		polygon_layer = this.tilemap.getObjectLayer(this.layerDialogePolygon);
+		for (let i=0; i<polygon_layer.objects.length; i++){
+			let temp = polygon_layer.objects[i];
+			temp.polygon.forEach((item)=>{
+				item.x += temp.x;
+				item.y += temp.y;
+			})
+
+			let new_polygon = new Phaser.Geom.Polygon(polygon_layer.objects[i].polygon);
+			new_polygon.file = temp.properties[0].value;
+			new_polygon.isActive = true;
+			this.dialogue_polygons.push(new_polygon);
+		}		
 	}
 
 	createTopLayer(){
@@ -87,6 +103,16 @@ class Tilemap {
 				}
 			}
 		})
+
+		this.dialogue_polygons.forEach((polygon)=> {
+			if (polygon.isActive){
+				if (polygon.contains(player.x, player.y)){
+					polygon.isActive = false;
+					UI.handleDialogue(dialogue_data[polygon.file]);
+				}
+			}
+		})
+
 	}
 
 	setCollision(obj){

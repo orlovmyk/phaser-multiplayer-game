@@ -1,0 +1,18 @@
+{
+	"begin": {
+		"data": [
+			{
+				"name": "player",
+				"say": "hello"
+			},
+			{
+				"name": "player",
+				"say": "hello222222"
+			},
+			{
+				"name": "player",
+				"say": "hello3333"
+			}
+		]
+	}
+}

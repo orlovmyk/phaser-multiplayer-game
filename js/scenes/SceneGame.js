@@ -6,8 +6,10 @@ let camera_default_zoom = 1.0;
 let map;
 let player;
 let mobs;
+let dialogue_data;
 
 let DEBUG_FLAG = true;
+
 
 class SceneGame extends Phaser.Scene{
 	constructor(){
@@ -19,7 +21,8 @@ class SceneGame extends Phaser.Scene{
 		);
 	};
 
-	preload(){	
+	preload(){
+		this.load.json('dialogues_data1', 'dialogues/dialogues_data1.json');	
 		Player.preload(this);
 		Bat.preload(this);
   		Tilemap.preload(this, LVL_NAME, LVL_NAME);
@@ -50,6 +53,8 @@ class SceneGame extends Phaser.Scene{
 
 		this.defineColliders();
 		this.defineButtons();
+
+		dialogue_data = UI.cache.json.get("dialogues_data1");
 
 		map.createTopLayer();
 	};

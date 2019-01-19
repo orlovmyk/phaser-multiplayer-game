@@ -19,14 +19,13 @@ class SceneInterface extends Phaser.Scene{
 		this.joystick = this.addVirtualJoyStick();
 	  	this.healthbar = this.addHealthBar();
 	  	this.button = this.addButtons();
-	  	this.dialogue = this.addDialogue();
 	  	this.keyboard = this.addKeyboard();
 
 	  	this.camera;
 
-	  	//FIX PLEASE
-	  	this.dialogue.print("Я покакал!\nПрямо гамном");
+	  	this.dialogue = this.addDialogue();
 	  	this.dialogue.toggleVisible();
+	  	this.current_dialogue = [];
 	};
 
 	addCamera(camera){
@@ -111,4 +110,31 @@ class SceneInterface extends Phaser.Scene{
 		this.healthbar.toggleVisible();
 	}
 	//this.cameras.main.setAlpha(1);
+
+	handleDialogue(data){
+		camera.zoomTo(2);
+		this.toggleVisible();
+
+		player.setVelocity(0, 0);
+		player.strictCanMove = false;
+		player.direction = "idle";
+
+		console.log(data);
+		this.current_dialogue = data.data;
+		this.readDialogueLine();
+	}
+
+	readDialogueLine(){
+		if(this.current_dialogue.length == 0){ 
+			this.toggleVisible();
+			this.dialogue.toggleVisible();
+			camera.zoomTo(camera_default_zoom);
+			player.strictCanMove = true;
+		}
+		else {
+			console.log(this.current_dialogue);
+			let info = this.current_dialogue.pop();
+			this.dialogue.print(info.say, info.name);
+		}
+	}
 }
