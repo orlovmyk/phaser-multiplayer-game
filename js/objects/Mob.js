@@ -255,7 +255,12 @@ class Summoner extends Phaser.Physics.Arcade.Sprite{
 		this.bounceTimer = 0;
 		this.bounceTime = 1000;
 
+		this.fireTimer = 0;
+		this.fireDelay = 1200;
+
 		this.attack_damage = 5;
+
+		this.attack_bullet_damage = 5;
 
 		this.setMaxVelocity(70);
 	}
@@ -272,6 +277,11 @@ class Summoner extends Phaser.Physics.Arcade.Sprite{
 			this.clearTint();
 		}
 
+		if (time > this.fireTimer && !this.isBounced){
+			this.fireTimer = time + this.fireDelay;
+			bullets.get().fire(this.x, this.y);
+		}
+
 		if (!this.isBounced){
 			PlayerFollow(this, 180);			
 		}
@@ -282,20 +292,34 @@ class Summoner extends Phaser.Physics.Arcade.Sprite{
 
 let Bullet = new Phaser.Class({
 
-        Extends: Phaser.GameObjects.Image,
+        Extends: Phaser.GameObjects.Sprite,
 
         initialize:
 
         function Bullet (scene)
         {
-            Phaser.GameObjects.Image.call(this, scene, 0, 0, 'bullet');
+            Phaser.GameObjects.Sprite.call(this, scene, 0, 0, 'bullet');
+            scene.physics.add.existing(this);
 
-            this.speed = Phaser.Math.GetSpeed(400, 1);
+            this.incX = 0;
+            this.incY = 0;
+            this.damage = 5;
+
+            this.speed = Phaser.Math.GetSpeed(200, 1);
         },
 
         fire: function (x, y)
         {
-            this.setPosition(x, y - 50);
+            this.setPosition(x, y);
+
+            var angle = Phaser.Math.Angle.Between(player.x, player.y, x, y);
+
+            this.setRotation(angle);
+
+            this.incX = Math.cos(angle);
+            this.incY = Math.sin(angle);
+
+            this.lifespan = 2000;
 
             this.setActive(true);
             this.setVisible(true);
@@ -303,9 +327,12 @@ let Bullet = new Phaser.Class({
 
         update: function (time, delta)
         {
-            this.y -= this.speed * delta;
+        	this.lifespan -= delta;
 
-            if (this.y < -50)
+            this.x -= this.incX * (this.speed * delta);
+            this.y -= this.incY * (this.speed * delta);
+
+           	if (this.lifespan <= 0)
             {
                 this.setActive(false);
                 this.setVisible(false);

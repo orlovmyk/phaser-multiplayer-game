@@ -6,6 +6,7 @@ let camera_default_zoom = 1.0;
 let map;
 let player;
 let mobs;
+let bullets;
 
 let dialogue_data;
 
@@ -23,7 +24,8 @@ class SceneGame extends Phaser.Scene{
 	};
 
 	preload(){
-		this.load.json('dialogues_data1', 'dialogues/dialogues_data1.json');	
+		this.load.json('dialogues_data1', 'dialogues/dialogues_data1.json');
+		this.load.image('bullet', 'sprites/bullet.png');
 		Player.preload(this);
 		
 		Bat.preload(this);
@@ -60,6 +62,13 @@ class SceneGame extends Phaser.Scene{
 		camera.startFollow(player, true, 0.4, 0.4);
 		camera.zoomTo(camera_default_zoom);
 
+		// --Bullets--
+		bullets = this.add.group({
+        	classType: Bullet,
+        	maxSize: 50,
+        	runChildUpdate: true
+		});
+
 		this.defineColliders();
 		this.defineButtons();
 
@@ -86,11 +95,6 @@ class SceneGame extends Phaser.Scene{
 		});
 
 		UI.events.on("pressB",() =>{
-			UI.toggleVisible();
-			camera.zoomTo(2);
-			camera.once("camerazoomcomplete", () => {
-				UI.dialogue.toggleVisible();
-		    });
 
 		});
 
@@ -114,12 +118,15 @@ class SceneGame extends Phaser.Scene{
 		});
 
 		this.physics.add.collider(player, mobs, (ob, mob) =>{
-			//ob1.setTint(0xf00000);
-			//player.healthbar.damage(1);
 			if (!player.isAttack){
 				PlayerBounce(ob, mob);
 				player.damage(mob.attack_damage);
 			};
+		});
+
+		this.physics.add.collider(player, bullets, (ob, bullet) =>{
+			PlayerBounce(ob, bullet);
+			player.damage(bullet.damage);
 		});
 	}
 }
