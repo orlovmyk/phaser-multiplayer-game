@@ -74,7 +74,7 @@ class Tilemap {
 			})
 
 			let new_polygon = new Phaser.Geom.Polygon(polygon_layer.objects[i].polygon);
-			new_polygon.file = temp.properties[0].value;
+			new_polygon.data = temp.properties[0].value;
 			new_polygon.isActive = true;
 			this.dialogue_polygons.push(new_polygon);
 		}		
@@ -108,7 +108,7 @@ class Tilemap {
 			if (polygon.isActive){
 				if (polygon.contains(player.x, player.y)){
 					polygon.isActive = false;
-					UI.handleDialogue(dialogue_data[polygon.file]);
+					UI.handleDialogue(dialogue_data[polygon.data]);
 				}
 			}
 		})

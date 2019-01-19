@@ -120,7 +120,7 @@ class SceneInterface extends Phaser.Scene{
 		player.direction = "idle";
 
 		console.log(data);
-		this.current_dialogue = data.data;
+		this.current_dialogue = data.data.reverse();
 		this.readDialogueLine();
 	}
 
@@ -132,7 +132,6 @@ class SceneInterface extends Phaser.Scene{
 			player.strictCanMove = true;
 		}
 		else {
-			console.log(this.current_dialogue);
 			let info = this.current_dialogue.pop();
 			this.dialogue.print(info.say, info.name);
 		}

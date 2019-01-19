@@ -14,9 +14,6 @@ class Dialogue{
 		this.x = GAME_WIDTH*0.5;
 		this.y = GAME_HEIGHT*0.85;
 
-		//this.box = scene.add.box({ fillStyle: { color: 0xa0a0a0 } });
-		//this.rect = new Phaser.Geom.Rectangle(this.x, this.y, this.width, this.height);
-        
 		this.box = this.scene.add.sprite(this.x, this.y, 'dialogue_box')
         							.setDisplaySize(this.width, this.height);
 
@@ -35,7 +32,7 @@ class Dialogue{
         
         this.textX = this.avatarX + this.avatarHeight;
         this.textY = this.y - this.avatarHeight*0.5;
-        this.text = this.scene.add.text(this.textX, this.textY, "Hello", { fontFamily: 'Arial', color: '#333333' });
+        this.text = this.scene.add.text(this.textX, this.textY, "Hello", { fontFamily: 'Arial', color: '#333333', wordWrap: { width: this.width*0.7 }});
 	}
 
 	toggleVisible(){
