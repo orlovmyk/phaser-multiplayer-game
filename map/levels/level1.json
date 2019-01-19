@@ -149,6 +149,18 @@
                  "width":0,
                  "x":2543,
                  "y":1470
+                }, 
+                {
+                 "height":0,
+                 "id":30,
+                 "name":"Sorcerer",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":980,
+                 "y":528.666666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -216,6 +228,34 @@
                  "width":0,
                  "x":2510,
                  "y":1372
+                }, 
+                {
+                 "height":0,
+                 "id":21,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":5.33333333333326,
+                         "y":37.3333333333333
+                        }, 
+                        {
+                         "x":82.6666666666666,
+                         "y":57.3333333333333
+                        }, 
+                        {
+                         "x":118.666666666667,
+                         "y":5.33333333333326
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":884,
+                 "y":516
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -342,7 +382,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":21,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.1",

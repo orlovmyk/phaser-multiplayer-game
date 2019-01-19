@@ -119,7 +119,6 @@ class SceneInterface extends Phaser.Scene{
 		player.strictCanMove = false;
 		player.direction = "idle";
 
-		console.log(data);
 		this.current_dialogue = data.data.reverse();
 		this.readDialogueLine();
 	}

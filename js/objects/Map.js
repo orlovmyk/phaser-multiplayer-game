@@ -135,8 +135,16 @@ class Tilemap {
 				mobs.add(new Bat(this.scene, point.x, point.y));
 				break;
 
-			case "Skeleton":
-				mobs.add(new Bat(this.scene, point.x, point.y));
+			case "Sorcerer":
+				mobs.add(new Sorcerer(this.scene, point.x, point.y));
+				break;
+
+			case "Eye_monster":
+				mobs.add(new Eye_monster(this.scene, point.x, point.y));
+				break;
+
+			case "Summoner":
+				mobs.add(new Summoner(this.scene, point.x, point.y));
 				break;
 		}
 	}

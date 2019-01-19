@@ -33,7 +33,7 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 
 		this.body.setSize(25, 25);
 		this.anims.play("bat_fly");
-		this.health = 20;
+		this.health = 40;
 
 		this.isBounced = false;
 		this.bounceStart = false;
@@ -65,6 +65,256 @@ class Bat extends Phaser.Physics.Arcade.Sprite{
 		if (this.health < 0) this.destroy();
 	}
 }
+
+
+class Sorcerer extends Phaser.Physics.Arcade.Sprite{
+	static preload(game){
+		game.load.multiatlas("sorcerer", "sprites/sorcerer.json", "sprites");
+	}
+
+	static createAnims(scene){
+		let frames = scene.anims.generateFrameNames("sorcerer", {
+                        start: 0, 
+                        end: 9,
+                        prefix: "sorcerer attack_Animation 1_", 
+                        suffix: '.png'
+                     });
+	
+		scene.anims.create({ 
+			key: "sorcerer_attack", 
+			frames: frames, 
+			frameRate: 10, 
+			repeat: -1, 
+			yoyo:true
+		});
+	}
+
+	damage(amount){
+		this.health -= amount;
+	}
+
+	constructor(scene, x, y){
+		super(scene, x, y, "sorcerer", "sorcerer attack_Animation 1_0.png");
+		
+		scene.physics.add.existing(this);
+		scene.sys.displayList.add(this);
+		scene.sys.updateList.add(this);
+
+		this.body.setSize(25, 35);
+		this.anims.play("sorcerer_attack");
+		this.health = 70;
+
+		this.isBounced = false;
+		this.bounceStart = false;
+		this.bouncePower = 500;
+		this.bounceTimer = 0;
+		this.bounceTime = 1000;
+
+		this.summonTimer = 0;
+		this.summonTime = 5000;
+
+		this.attack_damage = 20;
+
+		this.setMaxVelocity(30);
+	}
+
+	update(time){
+		if (this.bounceStart){
+			this.bounceStart = false;
+			this.isBounced = true;
+			this.bounceTimer = time + this.bounceTime;
+		}
+
+		if (time > this.bounceTimer){
+			this.isBounced = false;
+			this.clearTint();
+		}
+
+		if (this.summonTimer < time){
+			this.summonTimer = time + this.summonTime;
+			mobs.add(new Bat(this.scene, this.x + randomInteger(0, 50), this.y + + randomInteger(0, 50)));
+		}
+
+		if (!this.isBounced){
+			PlayerFollow(this, 120);			
+		}
+
+		if (this.health < 0) this.destroy();
+	}
+}
+
+class Eye_monster extends Phaser.Physics.Arcade.Sprite{
+	static preload(game){
+		game.load.multiatlas("eye_monster", "sprites/eye_monster.json", "sprites");
+	}
+
+	static createAnims(scene){
+		let frames = scene.anims.generateFrameNames("eye_monster", {
+                        start: 0, 
+                        end: 3,
+                        prefix: "eye_monster_", 
+                        suffix: '.png'
+                     });
+
+		scene.anims.create({ 
+			key: "eye_monster_attack", 
+			frames: frames, 
+			frameRate: 10, 
+			repeat: -1, 
+			yoyo:true
+		});
+	}
+
+	damage(amount){
+		this.health -= amount;
+	}
+
+	constructor(scene, x, y){
+		super(scene, x, y, "eye_monster", "eye_monster_0.png");
+		
+		scene.physics.add.existing(this);
+		scene.sys.displayList.add(this);
+		scene.sys.updateList.add(this);
+
+		this.body.setSize(25, 35);
+		this.anims.play("eye_monster_attack");
+		this.health = 70;
+
+		this.isBounced = false;
+		this.bounceStart = false;
+		this.bouncePower = 500;
+		this.bounceTimer = 0;
+		this.bounceTime = 1000;
+
+		this.attack_damage = 5;
+
+		this.setMaxVelocity(70);
+	}
+
+	update(time){
+		if (this.bounceStart){
+			this.bounceStart = false;
+			this.isBounced = true;
+			this.bounceTimer = time + this.bounceTime;
+		}
+
+		if (time > this.bounceTimer){
+			this.isBounced = false;
+			this.clearTint();
+		}
+
+		if (!this.isBounced){
+			PlayerFollow(this, 180);			
+		}
+
+		if (this.health < 0) this.destroy();
+	}
+}
+
+
+class Summoner extends Phaser.Physics.Arcade.Sprite{
+	static preload(game){
+		game.load.multiatlas("summoner", "sprites/summoner.json", "sprites");
+	}
+
+	static createAnims(scene){
+		let frames = scene.anims.generateFrameNames("summoner", {
+                        start: 0, 
+                        end: 9,
+                        prefix: "summoner_", 
+                        suffix: '.png'
+                     });
+
+		scene.anims.create({ 
+			key: "summoner_attack", 
+			frames: frames, 
+			frameRate: 10, 
+			repeat: -1, 
+			yoyo:true
+		});
+	}
+
+	damage(amount){
+		this.health -= amount;
+	}
+
+	constructor(scene, x, y){
+		super(scene, x, y, "summoner", "summoner_0.png");
+		
+		scene.physics.add.existing(this);
+		scene.sys.displayList.add(this);
+		scene.sys.updateList.add(this);
+
+		this.body.setSize(25, 35);
+		this.anims.play("summoner_attack");
+		this.health = 70;
+
+		this.isBounced = false;
+		this.bounceStart = false;
+		this.bouncePower = 500;
+		this.bounceTimer = 0;
+		this.bounceTime = 1000;
+
+		this.attack_damage = 5;
+
+		this.setMaxVelocity(70);
+	}
+
+	update(time){
+		if (this.bounceStart){
+			this.bounceStart = false;
+			this.isBounced = true;
+			this.bounceTimer = time + this.bounceTime;
+		}
+
+		if (time > this.bounceTimer){
+			this.isBounced = false;
+			this.clearTint();
+		}
+
+		if (!this.isBounced){
+			PlayerFollow(this, 180);			
+		}
+
+		if (this.health < 0) this.destroy();
+	}
+}
+
+let Bullet = new Phaser.Class({
+
+        Extends: Phaser.GameObjects.Image,
+
+        initialize:
+
+        function Bullet (scene)
+        {
+            Phaser.GameObjects.Image.call(this, scene, 0, 0, 'bullet');
+
+            this.speed = Phaser.Math.GetSpeed(400, 1);
+        },
+
+        fire: function (x, y)
+        {
+            this.setPosition(x, y - 50);
+
+            this.setActive(true);
+            this.setVisible(true);
+        },
+
+        update: function (time, delta)
+        {
+            this.y -= this.speed * delta;
+
+            if (this.y < -50)
+            {
+                this.setActive(false);
+                this.setVisible(false);
+            }
+        }
+
+});
+
+
 
 
 function PlayerFollow(sprite, speed){

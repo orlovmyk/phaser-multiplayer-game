@@ -6,6 +6,7 @@ let camera_default_zoom = 1.0;
 let map;
 let player;
 let mobs;
+
 let dialogue_data;
 
 let DEBUG_FLAG = true;
@@ -24,7 +25,12 @@ class SceneGame extends Phaser.Scene{
 	preload(){
 		this.load.json('dialogues_data1', 'dialogues/dialogues_data1.json');	
 		Player.preload(this);
+		
 		Bat.preload(this);
+  		Sorcerer.preload(this);
+  		Eye_monster.preload(this);
+  		Summoner.preload(this);
+
   		Tilemap.preload(this, LVL_NAME, LVL_NAME);
 	};
 
@@ -45,6 +51,9 @@ class SceneGame extends Phaser.Scene{
 		// --Mobs--
 		mobs = this.physics.add.group();
 		Bat.createAnims(this);
+		Sorcerer.createAnims(this);
+		Eye_monster.createAnims(this);
+		Summoner.createAnims(this);
 
 		// --Camera--
 		camera = this.cameras.main;
@@ -149,3 +158,10 @@ function ResetGame(){
 		Game.scene.scenes[1].scene.restart();
     }, [], this);	
 }
+
+
+function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    return rand;
+  }
