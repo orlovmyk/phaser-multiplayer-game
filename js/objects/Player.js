@@ -103,11 +103,16 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		//to check collide on hitbox
 		this.isAttack = false;
 
+		this.attack_direction;
+
 		//player damage
 		this.attack_damage = 15;
 
 		//player health
 		this.health = 100;
+
+		//is player dead
+		this.isDead = false;
 
 		this.direction;
 
@@ -125,6 +130,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.isAttack = true;
 
 		let angle = (Phaser.Math.Angle.Between(this.x, this.y, mob.x, mob.y)*180)/Math.PI-180;
+		console.log(angle);
+
+		if ((angle > -315) || (angle < -45)){ this.attack_direction = dir.left}
+		if ((angle > -315) && (angle < -225)){ this.attack_direction = dir.up}
+		if ((angle > -225) && (angle < -135)){ this.attack_direction = dir.right}
+		if ((angle > -135) && (angle < -45)){ this.attack_direction = dir.down}
+
 		let velocity = new Phaser.Math.Vector2();
 	    velocity.setToPolar(Phaser.Math.DegToRad(angle), -300);
 
@@ -175,7 +187,9 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		}
 
 		if(this.health < 0){
-			console.log('im dead');
+			if (!this.isDead) ResetGame();
+			this.isDead = true;
+			this.canMoveStartTimer = true;
 		}
 
 		this.attackUpdate(time);
@@ -183,7 +197,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.hitbox.x = this.x;
 		this.hitbox.y = this.y;
 
-		this.playMoveAnimation();
+		if (this.isAttack){
+			this.playAttackAnimation();
+		}
+
+		else{
+			this.playMoveAnimation();
+		}
 	}
 
 	//KOSTIL' SRANYII
@@ -333,6 +353,42 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
 			case dir.idle:
 				this.anims.play(dir.idle, true);
+				break;
+		}
+	}
+
+	playAttackAnimation(){
+		switch (this.attack_direction) {
+			case dir.up:
+				this.anims.play("slice_"+dir.up, true);
+				break;
+
+			case dir.down:
+				this.anims.play("slice_"+dir.down, true);
+				break;
+
+			case dir.right:
+				this.anims.play("slice_"+dir.right, true);
+				break;
+
+			case dir.left:
+				this.anims.play("slice_"+dir.left, true);
+				break;
+
+			case dir.upright:
+				this.anims.play("slice_"+dir.right, true);
+				break;
+
+			case dir.upleft:
+				this.anims.play("slice_"+dir.left, true);
+				break;
+
+			case dir.downright:
+				this.anims.play("slice_"+dir.right, true);
+				break;
+
+			case dir.downleft:
+				this.anims.play("slice_"+dir.left, true);
 				break;
 		}
 	}

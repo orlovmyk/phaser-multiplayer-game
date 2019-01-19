@@ -34,10 +34,10 @@ class SceneInterface extends Phaser.Scene{
 	}
 
 	addVirtualJoyStick(){
-		let stickX = GAME_WIDTH - ((GAME_WIDTH/20)*18);
-		let stickY = (GAME_HEIGHT/14)*12;
+		let stickX = GAME_WIDTH * 0.12;
+		let stickY = GAME_HEIGHT * 0.8;
 
-		let joystick_size = GAME_HEIGHT/5;
+		let joystick_size = GAME_HEIGHT/4;
 
 		//turn off debug 
 		let stickBot = this.physics.add.image(0, 0, 'joystick_bot')

@@ -33,7 +33,7 @@ class SceneGame extends Phaser.Scene{
   		map.debugCollision();
 
   		// --Player--
-  		player = new Player(this, 150, 60);
+  		player = new Player(this, 730, 450);
 		player.createCursors(UI.keyboard, UI.joystick);
 		player.createHealthBar(UI.healthbar);
 		player.createAnims();
@@ -59,11 +59,6 @@ class SceneGame extends Phaser.Scene{
 		}, this)
 
 		DrawTarget();
-
-		if(DEBUG_FLAG && (mobs.countActive() != 0)) {
-			ClosestMobToPlayer();
-			DEBUG_FLAG = false;
-	    }
 		//this.physics.moveToObject(mob.sprite, player, 50);
 	};
 
@@ -131,3 +126,13 @@ function MobBounce(ob, mob){
     mob.setTint(0xf00000);
 }
 
+function ResetGame(){
+	camera.shake(100, 0.05);
+    camera.fade(255, 0, 0, 0);
+
+    timedEvent = UI.time.delayedCall(3000, ()=>{
+
+		Game.scene.scenes[2].scene.restart();
+		Game.scene.scenes[1].scene.restart();
+    }, [], this);	
+}
