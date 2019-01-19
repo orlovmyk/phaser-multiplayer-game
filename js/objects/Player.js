@@ -4,6 +4,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		game.load.multiatlas("knight_slice", "sprites/knight_slice.json", "sprites");
 		game.load.image("empty_image", "sprites/empty_image.png");
 		game.load.image("circle", "sprites/circle.png");
+		game.load.image("death", "sprites/death.jpg");
 	}
 
 	createAnims(scene){
@@ -130,8 +131,6 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.isAttack = true;
 
 		let angle = (Phaser.Math.Angle.Between(this.x, this.y, mob.x, mob.y)*180)/Math.PI-180;
-		console.log(angle);
-
 		if ((angle > -315) || (angle < -45)){ this.attack_direction = dir.left}
 		if ((angle > -315) && (angle < -225)){ this.attack_direction = dir.up}
 		if ((angle > -225) && (angle < -135)){ this.attack_direction = dir.right}

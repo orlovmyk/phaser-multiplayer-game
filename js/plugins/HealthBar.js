@@ -15,14 +15,15 @@ class HealthBar{
         this.valueStart = 100;
         this.value = this.valueStart;
 
-        this.graphicsBot = scene.add.graphics({ fillStyle: { color: 0xff0000 } });
+        this.graphicsBot = scene.add.graphics({ fillStyle: { color: 0x990000 } });
         this.rectBot = new Phaser.Geom.Rectangle(7, 7, this.width, this.height);
 
-        this.graphicsTop = scene.add.graphics({ fillStyle: { color: 0x00aa00 } });
+        this.graphicsTop = scene.add.graphics({ fillStyle: { color: 0x017000 } });
         this.rectTop = new Phaser.Geom.Rectangle(7, 7, this.width, this.height);
 
         this.graphicsBot.fillRectShape(this.rectBot);  
-        this.graphicsTop.fillRectShape(this.rectTop);       
+        this.graphicsTop.fillRectShape(this.rectTop);
+
     }
 
     damage(amount){

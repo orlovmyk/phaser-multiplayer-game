@@ -134,8 +134,12 @@ function ResetGame(){
 	camera.shake(100, 0.05);
     camera.fade(255, 0, 0, 0);
 
-    timedEvent = UI.time.delayedCall(3000, ()=>{
+    timedEvent = UI.time.delayedCall(1000, ()=>{
+	    let death = UI.physics.add.sprite(GAME_WIDTH/2, GAME_HEIGHT/2, 'death');
+		death.setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
+    }, [], this);	
 
+    timedEvent = UI.time.delayedCall(3000, ()=>{
 		Game.scene.scenes[2].scene.restart();
 		Game.scene.scenes[1].scene.restart();
     }, [], this);	
