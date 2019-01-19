@@ -6,8 +6,10 @@ class Tilemap {
 
 	constructor(obj) {
 		this.scene = obj;
-		this.layers = ["collision_layer","bot","mid","top"];
-		
+		this.layers = ["collision_layer","bot","mid"];
+
+		this.layer_top = "top";
+
 		this.layerCollide = "collision_layer";
 		this.layerMob = "mob";
 		this.layerPolygon = "polygon";
@@ -60,6 +62,10 @@ class Tilemap {
 		}
 
 		this.addObjectsToPolygons();
+	}
+
+	createTopLayer(){
+		let layer = this.tilemap.createStaticLayer(this.layer_top, this.tileset, 0, 0);
 	}
 
 	addObjectsToPolygons(){

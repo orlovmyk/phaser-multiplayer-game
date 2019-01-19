@@ -2,6 +2,7 @@ let LVL_NAME = "level1";
 
 let UI;
 let camera;
+let camera_default_zoom = 1.0;
 let map;
 let player;
 let mobs;
@@ -44,10 +45,13 @@ class SceneGame extends Phaser.Scene{
 
 		// --Camera--
 		camera = this.cameras.main;
-		camera.startFollow(player, true, 0.4, 0.4)
+		camera.startFollow(player, true, 0.4, 0.4);
+		camera.zoomTo(camera_default_zoom);
 
 		this.defineColliders();
 		this.defineButtons();
+
+		map.createTopLayer();
 	};
 
 	update(time, delta){
