@@ -22,6 +22,7 @@ class Tilemap {
 		this.objects;
 		this.polygons = [];
 		this.dialogue_polygons = [];
+		this.portal_polygons = [];
 
 		this.MobSpawn;
 	}
@@ -77,6 +78,21 @@ class Tilemap {
 			new_polygon.data = temp.properties[0].value;
 			new_polygon.isActive = true;
 			this.dialogue_polygons.push(new_polygon);
+		}
+
+		polygon_layer = this.tilemap.getObjectLayer(this.layerNPC);
+		for (let i=0; i<polygon_layer.objects.length; i++){
+			let temp = polygon_layer.objects[i];
+			temp.polygon.forEach((item)=>{
+				item.x += temp.x;
+				item.y += temp.y;
+			})
+
+			let new_polygon = new Phaser.Geom.Polygon(polygon_layer.objects[i].polygon);
+			new_polygon.x = temp.properties[0].value;
+			new_polygon.y = temp.properties[1].value;
+
+			this.portal_polygons.push(new_polygon);
 		}		
 	}
 
@@ -110,6 +126,13 @@ class Tilemap {
 					polygon.isActive = false;
 					UI.handleDialogue(dialogue_data[polygon.data]);
 				}
+			}
+		})
+
+		this.portal_polygons.forEach((polygon)=> {
+				if (polygon.contains(player.x, player.y)){
+					player.x = polygon.x;
+					player.y = polygon.y;
 			}
 		})
 

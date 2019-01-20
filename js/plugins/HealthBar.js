@@ -12,7 +12,7 @@ class HealthBar{
         this.width = (GAME_WIDTH/10)*4;
         this.height = 13;
 
-        this.valueStart = 100;
+        this.valueStart = 500;
         this.value = this.valueStart;
 
         this.graphicsBot = scene.add.graphics({ fillStyle: { color: 0x990000 } });

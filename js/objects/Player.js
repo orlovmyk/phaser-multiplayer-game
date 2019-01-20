@@ -113,7 +113,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 		this.attack_damage = 15;
 
 		//player health
-		this.health = 100;
+		this.health = 500;
 
 		//is player dead
 		this.isDead = false;

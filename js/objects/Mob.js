@@ -290,6 +290,41 @@ class Summoner extends Phaser.Physics.Arcade.Sprite{
 	}
 }
 
+
+class Barmen extends Phaser.Physics.Arcade.Sprite{
+	static preload(game){
+		game.load.multiatlas("barmen", "sprites/barmen.json", "sprites");
+		game.load.image("barmen_avatar", "sprites/barmen_avatar.png");
+	}
+
+	static createAnims(scene){
+		let frames = scene.anims.generateFrameNames("barmen", {
+                        start: 0, 
+                        end: 3,
+                        prefix: "barmen_", 
+                        suffix: '.png'
+                     });
+
+		scene.anims.create({ 
+			key: "barmen_idle", 
+			frames: frames, 
+			frameRate: 10, 
+			repeat: -1, 
+			yoyo:true
+		});
+	}
+
+	constructor(scene, x, y){
+		super(scene, x, y, "summoner", "summoner_0.png");
+		
+		scene.physics.add.existing(this);
+		scene.sys.displayList.add(this);
+		scene.sys.updateList.add(this);
+
+		this.anims.play("barmen_idle");
+	}
+}
+
 let Bullet = new Phaser.Class({
 
         Extends: Phaser.GameObjects.Sprite,

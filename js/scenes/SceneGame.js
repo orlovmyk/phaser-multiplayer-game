@@ -2,7 +2,7 @@ let LVL_NAME = "level1";
 
 let UI;
 let camera;
-let camera_default_zoom = 1.0;
+let camera_default_zoom = 1.5;
 let map;
 let player;
 let mobs;
@@ -32,6 +32,7 @@ class SceneGame extends Phaser.Scene{
   		Sorcerer.preload(this);
   		Eye_monster.preload(this);
   		Summoner.preload(this);
+  		Barmen.preload(this);
 
   		Tilemap.preload(this, LVL_NAME, LVL_NAME);
 	};
@@ -45,7 +46,7 @@ class SceneGame extends Phaser.Scene{
   		map.debugCollision();
 
   		// --Player--
-  		player = new Player(this, 730, 450);
+  		player = new Player(this, 730, 480);
 		player.createCursors(UI.keyboard, UI.joystick);
 		player.createHealthBar(UI.healthbar);
 		player.createAnims();
@@ -68,6 +69,9 @@ class SceneGame extends Phaser.Scene{
         	maxSize: 50,
         	runChildUpdate: true
 		});
+
+		Barmen.createAnims(this);
+		new Barmen(this, 3632, 413);
 
 		this.defineColliders();
 		this.defineButtons();
